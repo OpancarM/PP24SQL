@@ -87,8 +87,7 @@ create table bag
 create table bespoke
 (
     id                  int not null primary key auto_increment,
-    tailoring           int not null,
-    shoemaking          int not null
+    tailoring           int not null
 );
 
 #tailoringTable
@@ -103,24 +102,6 @@ create table tailoring
 #tailorTable
 
 create table tailor
-(
-    id                  int not null primary key auto_increment,
-    firstName           varchar(50) not null,
-    lastName            varchar(50) not null
-);
-
-#shoemakingTable
-
-create table shoemaking
-(
-    id                  int not null primary key auto_increment,
-    shoemaker           int not null,
-    price               decimal(18,2)
-);
-
-#tailorTable
-
-create table shoemaker
 (
     id                  int not null primary key auto_increment,
     firstName           varchar(50) not null,
@@ -143,6 +124,64 @@ create table shortening
     price               decimal(18,2)
 );
 
+#userTable
+
+create table user
+(
+    id                  int not null primary key auto_increment,
+    username            varchar(50) not null,
+    userPassword        varchar(50) not null,
+    firstName           varchar(50) not null,
+    lastName            varchar(50) not null,
+    telephone           int not null,
+    adress              varchar(50),
+    email               varchar(50)
+);
+
+#orderTable
+
+create table orders
+(
+    id                  int not null primary key auto_increment,
+    user                int not null,
+    dateOrder           datetime,
+    cart                int not null,
+    cost                decimal(18,2)
+);
+
+#cartTable
+
+create table cart
+(
+    id                  int not null primary key auto_increment,
+    product             int not null,
+    quantity            int not null,
+    discount            int,
+    price               decimal(18,2),
+    total               decimal(18,2)
+);
+
+#shippinigTable
+
+create table shipping 
+(
+    id                  int not null primary key auto_increment,
+    shippingProvider    varchar(50),
+    orders               int not null,
+    cost                decimal(18,2)
+);
+
+#paymentTable
+
+create table payment
+(
+    id                  int not null primary key auto_increment,
+    paymentType         varchar(50),
+    currency            varchar(50),
+    orders               int not null,
+    user                int not null
+);
+
 #servicesAlterTable
 
 alter table services add foreign key (product) references product(id);
@@ -161,12 +200,25 @@ alter table product add foreign key (bag) references bag(id);
 #bespokeAlterTable
 
 alter table bespoke add foreign key (tailoring) references tailoring(id);
-alter table bespoke add foreign key (shoemaking) references shoemaking(id);
 
 #tailoringAlterTable
 
 alter table tailoring add foreign key (tailor) references tailor(id);
 
-#shoemakingAlterTable
+#cartAlterTable
 
-alter table shoemaking add foreign key (shoemaker) references shoemaker(id);
+alter table cart add foreign key (product) references product(id);
+
+#orderAlterTable
+
+alter table orders add foreign key (user) references user(id);
+alter table orders add foreign key (cart) references cart(id);
+
+#shippingAlterTable
+
+alter table shipping add foreign key (orders) references orders(id);
+
+#paymentAlterTable
+
+alter table payment add foreign key (orders) references orders(id);
+alter table payment add foreign key (user) references user(id);
