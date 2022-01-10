@@ -1,0 +1,46 @@
+.top-bar {
+  background: transparent;
+}
+
+.top-bar .color {
+  background: transparent;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../images/background.jpg);
+  background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.head {
+  position: relative;
+  margin: 0 auto;
+  background-image: url(../images/suitBackground1.jpg);
+  background-repeat: no-repeat;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-position: center;
+  background-size: cover;
+  max-width: 1200px;
+  height: 100vh;
+  max-height: 1400px;
+}
+
+.fi-shopping-cart {
+  font-size: 2rem;
+  color: #CD7F32;
+}
+
+.menu-text {
+  font-family: 'Oooh Baby', cursive;
+  font-size: 1.3rem;
+}
+/*# sourceMappingURL=app.css.map */
