@@ -21,8 +21,10 @@
         
 <?php 
 
-if(isset($_GET['row']))
-{
+if(isset($_GET['row'])){
+    
+    
+}
     $row=$_GET['row'];
     $col=$_GET['col'];
     $xRow=$row-1;
@@ -52,7 +54,7 @@ if(isset($_GET['row']))
                     $matrix[$yRow][$j] = $p++;
                 }
                     $yRow++;
-                    if ($r > $row*$col) break;
+                    if ($p > $row*$col) break;
                 for ($i=$yRow; $i <= $xRow; $i++) 
                 { 
                     $matrix[$i][$xCol] = $p++;
@@ -74,7 +76,7 @@ echo '</tr>';
 $i++;
 } 
 echo '</table>';   
-}
+
 
 ?>
 
