@@ -1,12 +1,3 @@
-<?php 
-
-session_start();
-if(!isset($_SESSION['authorization'])){
-    header('location: index.php');
-    exit;
-}
-
-?>
 <!doctype html>
 <html class="no-js" lang="en" dir="ltr">
   <head>
@@ -19,10 +10,15 @@ if(!isset($_SESSION['authorization'])){
   </head>
 <body>
     <div class="grid-container"> 
-      <div class="grid-x grid-padding-x">
+      <div class="grid-x">
         <div class="large-12 cell">
-          <div class="callout">
-          <a href="signOut.php">Sign out</a>
+          <div class="callout">            
+            <form action="authorization.php" method="post">
+              <label for="id">SIGN IN
+                <input type="text" placeholder="username" name="id">
+                <input type="submit" class="button" value="Sign in">  
+              </label>  
+            </form>
           </div>
         </div>
       </div>

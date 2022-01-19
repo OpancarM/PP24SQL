@@ -5,12 +5,15 @@ if(!isset($_POST['id'])){
     exit;
 }
 
-if($_POST['id']!=10){
-    header('location: index.php');
-    exit;
+if($_POST['id']!=username){
+   header('location: index.php');
+   exit;
 }
 
 
+
+
+
 session_start();
-$_SESSION['authorization']=10;
+$_SESSION['authorization']=username;
 header('location: private.php');
