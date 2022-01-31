@@ -23,8 +23,8 @@
 
 if(isset($_GET['row'])){
     
-    
-}
+
+
     $row=$_GET['row'];
     $col=$_GET['col'];
     $xRow=$row-1;
@@ -62,6 +62,7 @@ if(isset($_GET['row'])){
                     $xCol--;    
             
             }
+
 echo '<table>';
 
 for($i=0;$i<$row;)
@@ -76,7 +77,7 @@ echo '</tr>';
 $i++;
 } 
 echo '</table>';   
-
+}
 
 ?>
 
