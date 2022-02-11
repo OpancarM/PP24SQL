@@ -48,47 +48,47 @@ class Program
 
     private function deletePhone()
     {
-        for($i=0;$i<count($this->info);$i++){
-            echo ($i+1) . '. ' . $this->info[$i]->getModel(). PHP_EOL;
+        if(count($this->info)===0){
+            echo 'No cell phones entered to change.'. PHP_EOL;
+            $this->menu();
         }
-        $delete = Entry::loadInt('Chose number to delete: ');
-       
-        array_splice($this->info,$delete-1,1);
-        $this->menu();
-    }
 
-    private function changePhone()
-    {
         for($i=0;$i<count($this->info);$i++){
-            echo ($i+1) . '. ' . $this->info[$i]->getBrand() . ' ' . $this->info[$i]->getModel() . ': ' . $this->info[$i]->getPrice() . PHP_EOL;
+            echo ($i+1) . '. ' . $this->info[$i]->getModel() . PHP_EOL;
         }
-        echo '1. Change Brand' . PHP_EOL;
-        echo '2. Change Model' . PHP_EOL;
-        echo '2. Change Price' . PHP_EOL;
-        echo '4. Exit' . PHP_EOL;
-        $change=0;
+        $change = Entry::loadInt('Select number to change or 0 to return to the menu: ');
 
+        if($change===-1){
+            echo 'Back to menu.'. PHP_EOL;
+            $this->menu();
+        }
+
+        echo '1. Change brand.' . PHP_EOL;
+        echo '2. Change model.' . PHP_EOL;
+        echo '3. Change price.' . PHP_EOL;
+        echo '4. Back to menu.' . PHP_EOL;
+        $choice=0;
         while(true){
-            $change = Entry::loadInt('Chose from menu: ','You did not input whole number');
-            if($change<1 || $change>4){
+            $choice = Enrty::loadInt('Select property to change or 4 to return to the menu: ');
+            if($choice<1 || $choice>4){
                 echo 'You did not enter a possible choice' . PHP_EOL;
                 continue;
             }
             break;
-        }        
-
-        switch($change){
+        }
+        switch($choice){
             case 1:
-                $this->info[$i]->setBrand();
+                $this->info[$change-1]->setBrand(Entry::loadString('Enter new brand: '));
                 break;
             case 2:
-                $this->info[$i]->setModel();
+                $this->info[$change-1]->setModel(Entry::loadString('Enter new model: '));
                 break;
             case 3:
-                $this->info[$i]->setPrice();
+                $this->info[$change-1]->setPrice(Entry::loadFloat('Enter new price: '));
                 break;
-                case 4:
-                    echo 'Thanks and goodbye!';
+            case 4:
+                $this->menu();
+                break;
         }
         $this->menu();
     }
