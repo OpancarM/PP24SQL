@@ -30,4 +30,9 @@ class App
             echo $class . '->' . $method . '() do not exist';
         }
     }
+    public static function config($key)
+    {
+        $config = include BP_APP . 'configuration.php';
+        return $config[$key];
+    }
 }
