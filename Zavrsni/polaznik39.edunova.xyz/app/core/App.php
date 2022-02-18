@@ -27,7 +27,10 @@ class App
             $instance = new $class();
             $instance->$method();
         }else{
-            echo $class . '->' . $method . '() do not exist';
+            $view = new View();
+            $view->render('error404',[
+                'donotexist' =>$class . '->' . $method
+            ]);
         }
     }
     public static function config($key)
