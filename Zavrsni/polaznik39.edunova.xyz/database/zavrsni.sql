@@ -1,8 +1,19 @@
 #databaseFinal
 
 drop database if exists edunovapp24;
-create database edunovapp24 character set utf8;
+create database edunovapp24 character set utf8mb4;
 use edunovapp24;
+
+#operatorTable
+
+create table operator(
+    id                  int not null primary key auto_increment,
+    email               varchar(50) not null,
+    operatorPassword    char(60) not null, 
+    firstName           varchar(50) not null,
+    lastName            varchar(50) not null,
+    role                varchar(10) not null
+);
 
 #productTable
 
@@ -43,6 +54,14 @@ create table cart
 
 alter table cart add foreign key (product) references product(id);
 alter table cart add foreign key (user) references user(id);
+
+#insertOperator
+
+insert into operater(email,userPassword,firstName,lastName, role) values
+# lozinka a
+('admin@edunova.hr','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Administrator','Edunova','admin'),
+# lozinka o
+('oper@edunova.hr','$2a$12$S6vnHiwtRDdoUW4zgxApvezBlodWj/tmTADdmKxrX28Y2FXHcoHOm','Operater','Edunova','oper');
 
 #insertProduct
 
