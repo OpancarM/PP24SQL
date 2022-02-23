@@ -23,6 +23,23 @@ class LoginController extends Controller
             $this->loginView('Password required',$_POST['email']);
             return;
          }
+        
+         $operator = Operator::authorization($_POST['email'],$_POST['password']);
+         if($operator==null){
+             $this->loginView('Wrong email and password',$_POST['email']);
+             return;
+         }
+
+         $_SESSION['autoriziran']=$operator;
+         $np = new DashboardController();
+         $np->index();
+    }
+
+    public function Logout()
+    {
+        unset($_SESSION['authorized']);
+        session_destroy();
+        $this->loginView('Succesful log out','');
     }
 
     private function loginView($message,$email)
