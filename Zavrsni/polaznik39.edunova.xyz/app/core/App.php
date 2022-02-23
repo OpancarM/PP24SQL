@@ -38,4 +38,13 @@ class App
         $config = include BP_APP . 'configuration.php';
         return $config[$key];
     }
+
+    public static function authorized()
+    {
+        if(isset($_SESSION) && isset($_SESSION['authorized'])){
+            return true;
+        }
+
+        return false;
+    }
 }
