@@ -19,7 +19,7 @@ class LoginController extends Controller
            return;
         }
 
-        if(strlen(trim($_POST['lozinka']))===0){
+        if(strlen(trim($_POST['password']))===0){
             $this->loginView('Password required',$_POST['email']);
             return;
          }
@@ -30,7 +30,7 @@ class LoginController extends Controller
              return;
          }
 
-         $_SESSION['autoriziran']=$operator;
+         $_SESSION['authorized']=$operator;
          $np = new DashboardController();
          $np->index();
     }
