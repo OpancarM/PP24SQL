@@ -6,7 +6,8 @@ use edunovapp24;
 
 #operatorTable
 
-create table operator(
+create table operator
+(
     id                  int not null primary key auto_increment,
     email               varchar(50) not null,
     operatorPassword    char(60) not null, 
