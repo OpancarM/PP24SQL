@@ -1,0 +1,22 @@
+body
+{
+    font-family: 'Courier New', Courier, monospace;
+}
+.grid-container
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin: 0.4rem;
+    max-width: 100%;
+}
+
+.fi-shopping-cart
+{
+    color: black;
+    font-size: 20px;
+}
+
+.top-bar, .top-bar ul
+{
+    background-color: transparent;
+}
