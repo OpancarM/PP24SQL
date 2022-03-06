@@ -1,6 +1,13 @@
 body
 {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;   
+}
+div
+{
+    background-color: transparent;
+}
+.background
+{
     background-image: url(../img/background.png);
     background-repeat: no-repeat;
     background-size: cover;
