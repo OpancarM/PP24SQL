@@ -22,7 +22,16 @@
   </div>
   <div class="top-bar-right">
     <ul class="menu">
-    <a href="#"><i class="fi-shopping-cart size-60"></i></a>
+      <li>
+        <?php if(App::autoriziran()):?>
+          <a href="<?=App::config('url')?>login/logout">Logout <?php echo $_SESSION['authorization']->name ?></a>
+        <?php else:?>
+          <a href="<?=App::config('url')?>login/index">Login</a>
+        <?php endif;?>
+      </li>
+      <li>
+        <a href="#"><i class="fi-shopping-cart size-60"></i></a>
+      </li>
     </ul>
   </div>
 </div>
