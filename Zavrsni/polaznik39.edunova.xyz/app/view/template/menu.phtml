@@ -9,26 +9,25 @@
       <li class="menu-text"><?=App::config('titleApp')?></li>
       <li><a href="<?=App::config('url')?>">Home</a></li>
       <li>
-        <a href="#">One</a>
-        <ul class="menu vertical">
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
-        </ul>
+        <a href="#">About</a>
       </li>
-      <li><a href="#">Two</a></li>
-      <li><a href="#">Three</a></li>
+      <li><a href="#">Products</a></li>
+      <?php if(App::authorized()):?>
+        <li><a href="<?=App::config('url')?>dashboard/index">Dashboard</a></li>
+      <?php endif;?> 
     </ul>
   </div>
   <div class="top-bar-right">
     <ul class="menu">
+    <ul class="menu">
       <li>
-        <?php if(App::autoriziran()):?>
-          <a href="<?=App::config('url')?>login/logout">Logout <?php echo $_SESSION['authorization']->name ?></a>
+        <?php if(App::authorized()):?>
+          <a href="<?=App::config('url')?>login/logout">Logout <?php echo $_SESSION['authorized']->name ?></a>
         <?php else:?>
           <a href="<?=App::config('url')?>login/index">Login</a>
         <?php endif;?>
       </li>
+      
       <li>
         <a href="#"><i class="fi-shopping-cart size-60"></i></a>
       </li>
