@@ -1,24 +1,35 @@
+
 body
 {
-    font-family: 'Courier New', Courier, monospace;   
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: hidden;
+      
 }
 div
 {
     background-color: transparent;
 }
-.background
-{
-    background-image: url(../img/background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+
     
 .grid-container
 {
     padding-right: 0px;
     padding-left: 0px;
-    margin: 0.4rem;
     max-width: 100%;
+    padding: 0;
+    background-image: url(../img/background2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    max-height: 100%;
+}
+
+.callout
+{  
+    background: transparent;
+    max-width: 92%;
+    margin: 0 auto;
+    margin-top: 40px;
+
 }
 
 .fi-shopping-cart
@@ -30,4 +41,10 @@ div
 .top-bar, .top-bar ul
 {
     background-color: transparent;
+}
+
+.footer
+{
+    margin-top: -10px;
+    margin-left: 70px;
 }
