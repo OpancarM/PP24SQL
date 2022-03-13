@@ -9,7 +9,7 @@ class LoginController extends Controller
 
     public function authorization()
     {
-        if(!isset($_POST['email']) || !isset($_POST['password'])){
+        if(!isset($_POST['email']) || !isset($_POST['user_password'])){
             $this->index();
             return;
         }
@@ -19,12 +19,12 @@ class LoginController extends Controller
            return;
         }
 
-        if(strlen(trim($_POST['password']))===0){
+        if(strlen(trim($_POST['user_password']))===0){
             $this->loginView('Password required',$_POST['email']);
             return;
          }
         
-         $operator = Operator::authorization($_POST['email'],$_POST['password']);
+         $operator = Operator::authorization($_POST['email'],$_POST['user_password']);
          if($operator==null){
              $this->loginView('Wrong email and password',$_POST['email']);
              return;
@@ -35,11 +35,11 @@ class LoginController extends Controller
          $np->index();
     }
 
-    public function Logout()
+    public function logout()
     {
         unset($_SESSION['authorized']);
         session_destroy();
-        $this->loginView('Succesful log out','');
+        $this->loginView('Succesful logout','');
     }
 
     private function loginView($message,$email)

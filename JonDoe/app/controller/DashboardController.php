@@ -6,6 +6,8 @@ class DashboardController extends AuthorizationController
 
     public function index()
     {
-        $this->view->render($this->viewDir . 'dashBoard');
+        $this->view->render($this->viewDir . 'dashboard',[
+            'user'=>$_SESSION['authorized']
+        ]);
     }
 }

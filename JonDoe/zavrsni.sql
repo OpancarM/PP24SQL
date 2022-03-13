@@ -10,10 +10,10 @@ create table operator
 (
     id                  int not null primary key auto_increment,
     email               varchar(50) not null,
-    operatorPassword    char(60) not null, 
-    firstName           varchar(50) not null,
-    lastName            varchar(50) not null,
-    role                varchar(10) not null
+    user_password       char(60) not null, 
+    first_name          varchar(50) not null,
+    last_Name           varchar(50) not null,
+    operator_role       varchar(10) not null
 );
 
 #productTable
@@ -58,7 +58,7 @@ alter table cart add foreign key (user) references user(id);
 
 #insertOperator
 
-insert into operater(email,userPassword,firstName,lastName, role) values
+insert into operator(email,user_password,first_name,last_name, operator_role) values
 # lozinka a
 ('admin@edunova.hr','$2a$12$gcFbIND0389tUVhTMGkZYem.9rsMa733t9J9e9bZcVvZiG3PEvSla','Administrator','Edunova','admin'),
 # lozinka o

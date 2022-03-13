@@ -2,7 +2,7 @@
 
 return [
     'dev'=>true,
-    'url'=>'http://polaznik39.edunova.xyz/',
+    'url'=>'http://jondoe.xyz/',
     'titleApp'=>'John Doe Tailoring',
     'data'=>[
         'server'=>'localhost',
@@ -11,3 +11,4 @@ return [
         'password'=>'edunova'
     ]
 ];
+
