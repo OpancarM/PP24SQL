@@ -22,7 +22,7 @@
     <ul class="menu">
       <li>
         <?php if(App::authorized()):?>
-          <a href="<?=App::config('url')?>login/logout">Logout <?php echo $_SESSION['authorized']->name ?></a>
+          <a href="<?=App::config('url')?>login/logout">Logout <?php echo $_SESSION['authorized']->firstName ?></a>
         <?php else:?>
           <a href="<?=App::config('url')?>login/index">Login</a>
         <?php endif;?>
