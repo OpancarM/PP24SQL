@@ -47,3 +47,74 @@ div
     margin-top: -10px;
     margin-left: 100px;
 }
+
+.category
+{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.category .product
+{
+    position: relative;
+    max-width: 360px;
+    height: 260px;
+    background-color: inherit;
+    margin: 30px 10px; 
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    transition: 0.3s ease-in-out;
+    border-radius: 15px;
+}
+.category .product:hover 
+{
+    height: 520px;
+} 
+.category .product .imgBx
+{
+    position: relative;
+    border-radius: 15px;
+    width:360px;
+    height: 260px;   
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+.category .product .imgBx > img 
+{
+    max-width: 100%;
+    width: 400px;
+    max-height: 100%;
+    border-radius: 15px;
+}
+.category .product .content
+{
+    position: relative;
+    padding: 32px 15px;
+    text-align: center;
+    color: #111;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+} 
+.category .product:hover .content 
+{
+    visibility: visible;
+    opacity: 1;
+    margin-top: -20px;
+    transition-delay: 0.2s;
+    transition: ease-in-out;
+}
+.content > h2 
+{
+    margin-top: 5px;
+    color: var(--color6);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+}
+.content > p
+{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-top: 20px;
+}
