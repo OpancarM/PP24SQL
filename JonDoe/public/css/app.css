@@ -24,11 +24,14 @@ div
 }
 
 .callout
-{  
+{
+    position: relative;  
     background: transparent;
     max-width: 92%;
     margin: 0 auto;
     margin-top: 50px; 
+    margin-left: 300px;
+    padding: 1rem;  
 }
 
 .fi-shopping-cart
@@ -110,11 +113,9 @@ div
 {
     margin-top: 5px;
     color: var(--color6);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.5rem;
 }
 .content > p
 {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-top: 20px;
 }
