@@ -9,9 +9,9 @@
       <li class="menu-text"><?=App::config('titleApp')?></li>
       <li><a href="<?=App::config('url')?>">Home</a></li>
       <li>
-        <a href="#">About</a>
+        <a href="<?=App::config('url')?>about/index">About</a>
       </li>
-      <li><a href="#<?=App::config('url')?>product/index">Products</a></li>
+      <li><a href="<?=App::config('url')?>product/index">Products</a></li>
       <?php if(App::authorized()):?>
         <li><a href="<?=App::config('url')?>dashboard/index">Dashboard</a></li>
       <?php endif;?> 
