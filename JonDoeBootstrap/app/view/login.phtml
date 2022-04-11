@@ -1,0 +1,91 @@
+<div class="col">
+  <form action="<?=App::config('url')?>login/authorization" method="POST">
+    <h2 class="text-center">Log in</h2>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="admin@edunova.hr" value="<?=$email?>">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="userpassword" placeholder="a">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Login">Submit</input>
+    <?=$message?>
+  </form>
+</div>
+<div class="col">
+  <div class="row">
+    <div class="col">
+      <h2 class>Admin</h2>
+      <ul>
+        <h4>Email</h4>
+        <li>admin@edunova.hr</li>
+        <h4>Password</h4>
+        <li>a</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2 class>Operator</h2>
+      <ul>
+        <h4>Email</h4>
+        <li>oper@edunova.hr</li>
+        <h4>Password</h4>
+        <li>o</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h2 class>User</h2>
+      <ul>
+        <h4>Email</h4>
+        <li>user1@edunova.hr</li>
+        <li>user2@edunova.hr</li>
+        <h4>Password</h4>
+        <li>b</li>
+        <li>c</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <hr class="mt-5">
+  <div class="col mt-5">
+    <figure>
+        <blockquote class="blockquote">
+            <p>
+                 "A tailor can adapt to any medium, be it poetry, be it criticism. As a poet, he can mend, and with the scissors of criticism he candivide."
+            </p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Franz Grillparzer
+        </figcaption>
+    </figure>  
+  </div>
+  <div class="col mt-5">
+    <figure class="mt-3">
+        <blockquote class="blockquote">
+            <p>
+                "Just because a suit fits, doesn't mean it looks good. You need a tailor. You want to get bespoke."
+            </p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Ryan Tedder
+        </figcaption>
+    </figure> 
+  </div>
+  <div class="col mt-5">
+    <figure>
+        <blockquote class="blockquote">
+            <p>
+                "If you are out to describe the truth, leave elegance to the tailor."
+            </p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+            Albert Einstein
+        </figcaption>
+    </figure>  
+  </div>
+
+</div>
+

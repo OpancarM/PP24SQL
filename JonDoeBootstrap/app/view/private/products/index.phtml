@@ -1,0 +1,30 @@
+<div class="d-flex flex-wrap">
+    <?php include 'add.phtml';?>
+    <?php foreach($product as $product): ?>
+    <div class="category">
+        <div class="product">                   
+            <div class="imgBx">
+                <img id="p_<?=$product->id?>" src="<?=$product->item_image?>" alt="<?=$product->item_name?>">
+            </div>
+            <div class="content">
+                <h2>
+                    <?=$product->item_name?>
+                </h2>
+                <p>
+                    <?=$product->item_description?>    
+                </p>
+                <div class="row">
+                    <div class="col">
+                        <p>
+                            <?=$product->item_price?>  
+                        </p>
+                    </div>
+                    <div class="col">
+                    <input class="btn btn-outline-warning" type="submit" value="Buy">
+                    </div>
+                </div>                   
+            </div>  
+        </div>   
+    </div>
+    <?php endforeach;?>   
+</div>

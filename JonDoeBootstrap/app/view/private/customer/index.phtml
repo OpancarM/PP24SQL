@@ -1,0 +1,38 @@
+<div class="col">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col"><a href="<?= App::config('url') ?>customer/new"><i style="color:green;" class="bi bi-plus-square"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($customer as $customer) : ?>
+                <tr>
+                    <th scope="row"><?= $customer->id ?></th>
+                    <td><?= $customer->email ?></td>
+                    <td><?= $customer->userpassword ?></td>
+                    <td><?= $customer->firstname ?></td>
+                    <td><?= $customer->lastname ?></td>
+                    
+                    <td>
+                        <a href="<?= App::config('url') ?>customer/change/=<? $customer->id ?>">
+                            <i title="Change &quot;<?= $customer->firstname ?>&quot;" class="bi bi-recycle"></i>
+                        </a>
+                        <?php if ($customer->cart === 0) : ?>
+                        <a onclick="return confirm('Are you sure you want to delete <?= $customer->firstname ?>?');" style="margin-left: 20px;" href="<?= App::config('url') ?>customer/delete/<?=$customer->id?>">
+                            <i style="color: red" title="Delete <?= $customer->firstname ?>" class="bi bi-trash"></i>
+                        </a>
+                        <?php else : ?>
+                        <i style="margin-left: 20px;color: gray" title="Cannot delete  <?= $customer->firstname?>" class="bi bi-trash"></i>
+                        <?php endif; ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
