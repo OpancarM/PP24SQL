@@ -56,7 +56,7 @@ class Customer
         $query = $connection->prepare('
         
                 insert into customer (email,userpassword,firstname,lastname)
-                values (:email, :userpassword, :firstname, :lastname)
+                values (:email, :userpassword, :firstname, :lastname);
         
         ');
         $query->execute($parameter);
@@ -72,8 +72,7 @@ class Customer
         userpassword=:userpassword,
         firstname=:firstname,
         lastname=:lastname,
-        where id=:id
-
+        where id=:id;
         ');
         
         $query->execute($parameter);
