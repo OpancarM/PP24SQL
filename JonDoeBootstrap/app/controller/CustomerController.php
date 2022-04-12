@@ -2,8 +2,8 @@
 
 class CustomerController extends AuthorizationController
 {
-    private $viewDir = 'private' . DIRECTORY_SEPARATOR . 
-                        'customer' . DIRECTORY_SEPARATOR;
+    private $viewDir =  'private' . DIRECTORY_SEPARATOR . 
+                        'customers' . DIRECTORY_SEPARATOR;
 
     private $message;
     private $customer;
@@ -28,16 +28,18 @@ class CustomerController extends AuthorizationController
         ]);
     }
 
-    public function new()
+    public function newcustomer()
     {
-        $this->view->render($this->viewDir . 'new',[
-            'messsage'=>'Add new data',
+        $this->view->render($this->viewDir . 'newcustomer',[
+            'messsage'=>'',
             'customer'=>$this->customer
         ]);
     }
 
-    public function change()
+    public function change($id)
     {
+        $this->customer = Customer::readOne($id);
+
         $this->view->render($this->viewDir . 'change',[
             'messsage'=>'Change the data',
             'customer'=>$this->customer
@@ -55,7 +57,7 @@ class CustomerController extends AuthorizationController
             Customer::create((array)$this->customer);
             $this->index();
         }else{
-            $this->view->render($this->viewDir.'new',[
+            $this->view->render($this->viewDir.'newcustomer',[
                 'message'=>$this->message,
                 'customer'=>$this->customer
             ]);
