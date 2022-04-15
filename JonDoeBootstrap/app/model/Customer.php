@@ -1,27 +1,6 @@
 <?php
 class Customer
 {
-    public static function authorization($email, $password)
-    {
-        $connection = DB::getInstance();
-
-        $query = $connection->prepare('
-        
-        select * from customer where email=:email;
-        
-        ');
-        $query->execute(['email'=>$email]);
-        $customer = $query->fetch();
-        if($customer==null){
-            return null;
-        }
-        if(!password_verify($password,$customer->userpassword)){
-            return null;
-        }
-        unset($customer->userpassword);
-        return $customer;
-    }
-
     public static function readOne($key)
     {
         $connection = DB::getInstance();
