@@ -2,7 +2,6 @@
 
 class Product
 {
-
     public static function readOne($key)
     {
         $connection = DB::getInstance();
@@ -22,8 +21,8 @@ class Product
         
         select a.id,a.item_name,a.item_price,a.item_description,a.item_image,
         count(b.id) as cart
-        from customer a left join cart b
-        on a.id = b.customer 
+        from product a left join cart b
+        on a.id = b.product 
         group by a.id,a.item_name,a.item_price,a.item_description,a.item_image;
         
         '); 
@@ -73,4 +72,5 @@ class Product
         $query->execute(['id'=>$id]);
 
     }
+    
 }
