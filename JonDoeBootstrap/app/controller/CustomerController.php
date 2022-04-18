@@ -12,7 +12,6 @@ class CustomerController extends AuthorizationController
     {
         parent::__construct();
         $this->customer = new stdClass();
-        $this->customer->id=0;
         $this->customer->email='';
         $this->customer->userpassword='';
         $this->customer->firstname='';
@@ -21,10 +20,10 @@ class CustomerController extends AuthorizationController
 
     public function index()
     {
-        $customer = Customer::read();
+        $customers = Customer::read();
 
         $this->view->render($this->viewDir . 'index', [
-            'customer' => $customer
+            'customers' => $customers
         ]);
     }
 
@@ -85,7 +84,7 @@ class CustomerController extends AuthorizationController
     public function delete($id)
     {
         Customer::delete($id);
-        header('location:' . App::config('url').'customer/index');
+        header('location:' . App::config('url').'customers/index');
     }
 
     private function prepareData()
