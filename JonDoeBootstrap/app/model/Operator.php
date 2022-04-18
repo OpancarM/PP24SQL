@@ -9,7 +9,9 @@ class Operator
 
         
         $query = $connection->prepare('
+
         select * from operator where email=:email
+
         ');
         $query->execute(['email' => $email]);
 
@@ -24,11 +26,7 @@ class Operator
 
             $operator = $query->fetch();
 
-            $query = $connection->prepare('
-                update customer set 
-                lastOnline =now()
-                where email=:email
-            ');
+            
             $query->execute(['email' => $email]);
 
             $connection->commit();
@@ -42,7 +40,6 @@ class Operator
             return null;
         }
 
-        // Removing password from session
         unset($operator->userpassword);
         return $operator;
     }
