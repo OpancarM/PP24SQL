@@ -11,23 +11,23 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($customer as $customers):?>
+            <?php foreach ($customers as $customer):?>
                 <tr>
-                    <th scope="row"><?= $customers->id ?></th>
-                    <td><?= $customers->email ?></td>
-                    <td><?= $customers->userpassword ?></td>
-                    <td><?= $customers->firstname ?></td>
-                    <td><?= $customers->lastname ?></td>
+                    <th scope="row"><?= $customer->id ?></th>
+                    <td><?= $customer->email ?></td>
+                    <td><?= $customer->userpassword ?></td>
+                    <td><?= $customer->firstname ?></td>
+                    <td><?= $customer->lastname ?></td>
                     <td>
                         <a href="<?= App::config('url') ?>customer/change/=<? $customer->id?>">
-                            <i title="Change &quot;<?= $customers->firstname?>&quot;" class="bi bi-recycle"></i>
+                            <i title="Change &quot;<?= $customer->firstname?>&quot;" class="bi bi-recycle"></i>
                         </a>
                         <?php if ($customer->cart == 0): ?>
-                        <a onclick="return confirm('Are you sure you want to delete <?= $customers->firstname?>?');" style="margin-left: 20px;" href="<?= App::config('url') ?>customer/delete/<?=$customers->id?>">
-                            <i style="color: red" title="Delete <?= $customers->firstname ?>" class="bi bi-trash"></i>
+                        <a onclick="return confirm('Are you sure you want to delete <?= $customer->firstname?>?');" style="margin-left: 20px;" href="<?= App::config('url') ?>customer/delete/<?=$customers->id?>">
+                            <i style="color: red" title="Delete <?= $customer->firstname ?>" class="bi bi-trash"></i>
                         </a>
                         <?php else:?>
-                        <i style="margin-left: 20px;color: gray" title="Cannot delete  <?= $customers->firstname?>" class="bi bi-trash"></i>
+                        <i style="margin-left: 20px;color: gray" title="Cannot delete  <?= $customer->firstname?>" class="bi bi-trash"></i>
                         <?php endif;?>
                     </td>
                 </tr>
