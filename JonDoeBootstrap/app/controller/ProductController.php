@@ -12,6 +12,8 @@ class ProductController extends AuthorizationController
     public function __construct()
     {
         parent::__construct();
+        /*$this->nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
+        $this->nf->setPattern('#,##0.00 kn');*/
         $this->product = new stdClass();
         $this->product->item_name='';
         $this->product->item_price='';
@@ -23,10 +25,12 @@ class ProductController extends AuthorizationController
     {
         $product = Product::read();
        
-        
+        /*foreach($products as $product){
+            $product->item_price=$this->nf->format($product->item_price);
+        }*/
 
        $this->view->render($this->viewDir . 'index',[
-           'product' => $product   
+           'products' => $product,
        ]);
     }   
 
@@ -42,11 +46,11 @@ class ProductController extends AuthorizationController
     {
         $this->product = Product::readOne($id);
 
-        if($this->product->item_price==0){
+        /*if($this->product->item_price==0){
             $this->product->item_price='';
         }else{
-            $this->product->cijena=$this->nf->format($this->product->item_price);
-        }
+            $this->product->item_price=$this->nf->format($this->product->item_price);
+        }*/
 
         $this->view->render($this->viewDir . 'change',[
             'message'=>'Change data',
@@ -64,7 +68,7 @@ class ProductController extends AuthorizationController
             Product::create((array)$this->product);
             header('location:' . App::config('url').'product/index');
         }else{
-            $this->view->render($this->viewDir.'addNew',[
+            $this->view->render($this->viewDir.'add',[
                 'message'=>$this->message,
                 'product'=>$this->product
             ]);
@@ -80,9 +84,9 @@ class ProductController extends AuthorizationController
         && $this->controlPrice()
         && $this->controlDescription()){
             Product::update((array)$this->product);
-            header('location:' . App::config('url').'product/index');
+            header('location:' . App::config('url').'products/index');
         }else{
-            $this->view->render($this->viewDir.'changeNew',[
+            $this->view->render($this->viewDir.'change',[
                 'message'=>$this->message,
                 'product'=>$this->product
             ]);
@@ -93,7 +97,7 @@ class ProductController extends AuthorizationController
     public function delete($id)
     {
         Product::delete($id);
-        header('location:' . App::config('url').'product/index');
+        header('location:' . App::config('url').'products/index');
     }
 
     private function controlName()
