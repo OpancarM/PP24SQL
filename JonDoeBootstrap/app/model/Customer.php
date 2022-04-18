@@ -9,7 +9,7 @@ class Customer
         select * from customer where id=:parameter;
         
         ');
-        $query->execute(['id' => $id]);
+        $query->execute(['parameter' =>$key]);
         return  $query->fetchAll();
     }
 
