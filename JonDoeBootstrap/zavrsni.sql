@@ -4,6 +4,8 @@ drop database if exists edunovapp24;
 create database edunovapp24 character set utf8mb4;
 use edunovapp24;
 
+
+
 #operatorTable
 
 create table operator
@@ -58,16 +60,16 @@ alter table cart add foreign key (customer) references customer(id);
 
 insert into operator(email,userpassword,firstname,lastname, operatorrole) values
 # pass a
-('admin@edunova.hr','$2a$12$QXMPLqMNoqhdKAYsV2.NmOvRRNfSAfuDMyODYaI/H.kss21UYEv4S','Administrator','Edunova','admin'),
+('admin@edunova.hr','$2a$12$QXMPLqMNoqhdKAYsV2.NmOvRRNfSAfuDMyODYaI/H.kss21UYEv4S','Admin','Edunova','admin'),
 # pass o
 ('oper@edunova.hr','$2a$12$6RsJ3lGidFiEb6tufZPLWOWkVRvMi5RfbFsTcZRNxgtnDueKj9CEK','Operater','Edunova','oper');
 
 #insertProduct
 
 insert into product (id,item_name,item_price,item_description,item_image) values
-(null,'Brown Linen Single Cuff Slim Fit Shirt','199.99','One of the beautiful characteristics of linen is its versatility. Linen clothing manages to do something that few other fabrics can, the ability to make the wearer look both casual and smart at the same time. If you’re looking for a shirt to compliment a summer suit or trousers, you really can’t go far wrong with a classic linen shirt, for whatever occasion befits. With a relaxed single cuff, tailored fit, our linen shirts come with our house collar; a generous spread that looks as good with a tie, as it does without.','./public/img/product1.jpg'),
-(null,'Sage Flannel Single Cuff Shirt','299.99','An intimate cotton-wool fabric blend, our slim fit flat front shirt combines the two preeminent qualities of raw materials we love: the lightness, softness, and warmth of wool, and the fit and breathability of cotton, to create a flannel shirt which feels better with every single wear. The result is an elegant casual shirt with a light and soft hand-feel and a perfect fit.','./public/img/product1.jpg'),
-(null,'White Poplin Marcella Classic Double Cuff Shirt','99.99','The ultimate white cotton shirt: a staple of every gentleman’s wardrobe. Classic fit with a floating Hammick collar offering room to move in style. Beautifully made from the highest grade Egyptian cotton with a two-fold composition for strength and comfort. Cut by hand to follow the body’s contours, with every button sewn on one by one, and secured with wax thread. Double cuff, for more formal occasions.','./public/img/product1.jpg'),
+(null,'Brown Linen Single Cuff Slim Fit Shirt','199.99',' Linen clothing manages to do something that few other fabrics can, the ability to make the wearer look both casual and smart at the same time.','./public/img/product1.jpg'),
+(null,'Sage Flannel Single Cuff Shirt','299.99','An intimate cotton-wool fabric blend, our slim fit flat front shirt combines the two preeminent qualities of raw materials','./public/img/product1.jpg'),
+(null,'White Poplin Marcella Classic Double Cuff Shirt','99.99','The ultimate white cotton shirt: a staple of every gentleman’s wardrobe. Classic fit with a floating Hammick collar offering room to move in style.','./public/img/product1.jpg'),
 (null,'Black tox Suit','999.99','A pinnacle of sophisticated menswear for elegant times, this tox suit is refined into an elegant easy-to-wear suit.','./public/img/product3.jpg'),
 (null,'Wool Twill Suit','999.99','A pinnacle of sophisticated menswear for winter, this wool Twill suit is refined into an elegant easy-to-wear suit.','./public/img/product2.jpg'),
 (null,'3p suits ','999.99','A pinnacle of sophisticated menswear for spring and summer, this 3p suit is refined into an elegant easy-to-wear suit. ','./public/img/product2.jpg');
