@@ -4,14 +4,6 @@
     text-align: center;
 }
 
-.category
-{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-}
 .category .product
 {
     position: relative;
