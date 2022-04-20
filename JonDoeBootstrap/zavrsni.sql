@@ -25,8 +25,7 @@ create table product
     id                  int not null primary key auto_increment,
     item_name           varchar(50),
     item_price          decimal(18,2),
-    item_description    varchar(255),
-    item_image          varchar(255)   
+    item_description    varchar(255)  
 );
 
 #customerTable
@@ -66,13 +65,13 @@ insert into operator(email,userpassword,firstname,lastname, operatorrole) values
 
 #insertProduct
 
-insert into product (id,item_name,item_price,item_description,item_image) values
-(null,'Brown Linen Single Cuff Slim Fit Shirt','199.99',' Linen clothing manages to do something that few other fabrics can, the ability to make the wearer look both casual and smart at the same time.','./public/img/product1.jpg'),
-(null,'Sage Flannel Single Cuff Shirt','299.99','An intimate cotton-wool fabric blend, our slim fit flat front shirt combines the two preeminent qualities of raw materials','./public/img/product1.jpg'),
-(null,'White Poplin Marcella Classic Double Cuff Shirt','99.99','The ultimate white cotton shirt: a staple of every gentleman’s wardrobe. Classic fit with a floating Hammick collar offering room to move in style.','./public/img/product1.jpg'),
-(null,'Black tox Suit','999.99','A pinnacle of sophisticated menswear for elegant times, this tox suit is refined into an elegant easy-to-wear suit.','./public/img/product3.jpg'),
-(null,'Wool Twill Suit','999.99','A pinnacle of sophisticated menswear for winter, this wool Twill suit is refined into an elegant easy-to-wear suit.','./public/img/product2.jpg'),
-(null,'3p suits ','999.99','A pinnacle of sophisticated menswear for spring and summer, this 3p suit is refined into an elegant easy-to-wear suit. ','./public/img/product2.jpg');
+insert into product (id,item_name,item_price,item_description) values
+(null,'Brown Linen Single Cuff Slim Fit Shirt','199.99',' Linen clothing manages to do something that few other fabrics can, the ability to make the wearer look both casual and smart at the same time.'),
+(null,'Sage Flannel Single Cuff Shirt','299.99','An intimate cotton-wool fabric blend, our slim fit flat front shirt combines the two preeminent qualities of raw materials'),
+(null,'White Poplin Marcella Classic Double Cuff Shirt','99.99','The ultimate white cotton shirt: a staple of every gentleman’s wardrobe. Classic fit with a floating Hammick collar offering room to move in style.'),
+(null,'Black tox Suit','999.99','A pinnacle of sophisticated menswear for elegant times, this tox suit is refined into an elegant easy-to-wear suit.'),
+(null,'Wool Twill Suit','999.99','A pinnacle of sophisticated menswear for winter, this wool Twill suit is refined into an elegant easy-to-wear suit.'),
+(null,'3p suits ','999.99','A pinnacle of sophisticated menswear for spring and summer, this 3p suit is refined into an elegant easy-to-wear suit. ');
 
 #insertCustomer
 
