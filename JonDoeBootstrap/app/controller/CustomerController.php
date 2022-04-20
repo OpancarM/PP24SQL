@@ -27,9 +27,9 @@ class CustomerController extends AuthorizationController
         ]);
     }
 
-    public function newcustomer()
+    public function add()
     {
-        $this->view->render($this->viewDir . 'newcustomer',[
+        $this->view->render($this->viewDir . 'add',[
             'messsage'=>'',
             'customer'=>$this->customer
         ]);
@@ -56,7 +56,7 @@ class CustomerController extends AuthorizationController
             Customer::create((array)$this->customer);
             $this->index();
         }else{
-            $this->view->render($this->viewDir.'newcustomer',[
+            $this->view->render($this->viewDir.'add',[
                 'message'=>$this->message,
                 'customer'=>$this->customer
             ]);
@@ -84,7 +84,7 @@ class CustomerController extends AuthorizationController
     public function delete($id)
     {
         Customer::delete($id);
-        header('location:' . App::config('url').'customers/index');
+        header('location:' . App::config('url').'customer/index');
     }
 
     private function prepareData()
