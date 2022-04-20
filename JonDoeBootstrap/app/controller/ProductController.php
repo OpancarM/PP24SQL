@@ -18,7 +18,6 @@ class ProductController extends AuthorizationController
         $this->product->item_name='';
         $this->product->item_price='';
         $this->product->item_description='';
-        $this->product->item_image='';
     }
 
     public function index()
@@ -84,7 +83,7 @@ class ProductController extends AuthorizationController
         && $this->controlPrice()
         && $this->controlDescription()){
             Product::update((array)$this->product);
-            header('location:' . App::config('url').'products/index');
+            header('location:' . App::config('url').'product/index');
         }else{
             $this->view->render($this->viewDir.'change',[
                 'message'=>$this->message,
@@ -97,7 +96,7 @@ class ProductController extends AuthorizationController
     public function delete($id)
     {
         Product::delete($id);
-        header('location:' . App::config('url').'products/index');
+        header('location:' . App::config('url').'product/index');
     }
 
     private function controlName()
