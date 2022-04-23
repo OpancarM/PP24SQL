@@ -2,28 +2,28 @@
   <div class="col">
     <nav aria-label="Page navigation example">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item"><a class="page-link text-muted" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link text-muted" href="#">1</a></li>
+        <li class="page-item"><a class="page-link text-muted" href="#">Next</a></li>
       </ul>
     </nav>
   </div>
-  <div class="col">
-    <a href="<?= App::config('url') ?>products/add"><i style="color:green; float:right;" class="bi bi-plus-square"></i></a>
-  </div>
-  
+  <?php include 'add.phtml';?>  
 </div>
-
+<hr>
+<?php foreach($products as $product): ?>
+    <div class="card m-5" style="width: 20rem; min-height:30rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+      <img class="card-img-top" id="p_<?=$product->id?> src="" alt="<?=$product->item_name?>">
+        <div class="card-body">
+          <h5 class="card-title text-center"><?=$product->item_name?></h5>
+          <p class="card-text text-center"><?=$product->item_description?></p>
+            <div class="row mt-5">
+              <div class="col"><p><?=$product->item_price?> € </p></div>
+              <div class="col" ><a href="#" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
+            </div>  
+        </div>
+    </div>
+<?php endforeach;?> 
 
         
-<?php foreach($products as $product): ?>
-    <div class="card m-5" style="width: 20rem; min-height:30rem;">
-  <img class="card-img-top" id="p_<?=$product->id?> src="" alt="<?=$product->item_name?>">
-  <div class="card-body">
-    <h5 class="card-title text-center"><?=$product->item_name?></h5>
-    <p class="card-text text-center"><?=$product->item_description?></p>
-    <p><?=$product->item_price?> € </p>
-    <a href="#" class="btn btn-outline-warning">BUY</a>
-  </div>
-</div>
-<?php endforeach;?>  
+ 
