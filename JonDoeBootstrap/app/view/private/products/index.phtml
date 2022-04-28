@@ -1,3 +1,4 @@
+<?php include 'error_report.phtml';?>
 <div class="row">
   <div class="col">
     <nav aria-label="Page navigation example">
@@ -8,7 +9,9 @@
       </ul>
     </nav>
   </div>
-  <?php include 'add.phtml';?>  
+  <?php if(App::admin()):?>
+  <?php include 'add.phtml';?>
+  <?php endif;?>  
 </div>
 <hr>
 <?php foreach($products as $product): ?>
@@ -19,8 +22,26 @@
           <p class="card-text text-center"><?=$product->item_description?></p>
             <div class="row mt-5">
               <div class="col"><p><?=$product->item_price?> € </p></div>
-              <div class="col" ><a href="#" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
+              <div class="col"><a href="#" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
             </div>  
+            <?php if(App::admin()):?>
+            <div class="row mt-5">
+              <div class="col">
+                <a href="<?= App::config('url') ?>product/details/=<? $product->id?>">
+                  <i title="Change" class="bi bi-pencil-square" style="color:black; font-size:2rem;"></i>
+                </a>
+              </div>
+              <div class="col" >
+              <?php if ($product->cart == 0): ?>
+                  <a onclick="return confirm('Are you sure you want to delete?');"  href="<?= App::config('url') ?>product/delete/<?=$product->id?>">
+                    <i title="Delete" class="bi bi-trash" style="color:red; float:right; font-size: 2rem;"></i>
+                  </a>
+                  <?php else:?>
+                    <i  title="Cannot delete" class="bi bi-trash" style="color:gray; float:right; font-size: 2rem;"></i>
+                  <?php endif;?>
+              </div>
+            </div>
+            <?php endif;?> 
         </div>
     </div>
 <?php endforeach;?> 
