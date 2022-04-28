@@ -71,4 +71,15 @@ class App
 
         return false;
     }
+
+    public static function admin()
+    {
+        if(App::authorized() && $_SESSION['authorized']->operatorrole==='admin'){
+            return true;
+        }
+
+        return false;
+    }
+
+    
 }
