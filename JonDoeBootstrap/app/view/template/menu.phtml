@@ -16,13 +16,11 @@
         <li class="nav-item">
           <a class="nav-link" href="<?=App::config('url')?>product/index">Product</a>
         </li>
-        <?php endif;?>
-        <?php if(App::authorized()):?>
+        
         <li class="nav-item">
           <a class="nav-link " href="<?=App::config('url')?>dashboard/index">Dashboard</a>
         </li>
-        <?php endif;?>
-        <?php if(App::authorized()):?>
+          <?php if(App::admin()):?>
         <li class="dropdown nav-item">
           <a class=" dropdown-toggle nav-link " type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             Admin/Operator
@@ -36,6 +34,7 @@
                 </li>
             </ul>
         </li>
+          <?php endif;?>
         <?php endif;?>
       </ul>
       <ul class="d-flex navbar-nav">
