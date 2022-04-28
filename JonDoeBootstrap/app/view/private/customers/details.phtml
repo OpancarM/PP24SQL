@@ -1,0 +1,48 @@
+<div class="col">
+  <form action="<?=App::config('url')?>product/action" method="post">
+    <fieldset>
+    <div class="form-row">
+
+      <div class="col mt-5 d-flex justify-content-center">
+        <label for="inputProduct" class="p-3 col-6">
+          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </label>
+      </div>
+
+      <div class="form-group col mt-5 d-flex justify-content-center">
+        <label for="inputPrice" class="p-3 col-6">
+          <input type="text" class="form-control" id="inputPassword" placeholder="Password">
+        </label>
+      </div>
+
+      <div class="col mt-5 d-flex justify-content-center">
+        <label for="inputProduct" class="p-3 col-6">
+          <input type="text" class="form-control" id="inputFirstName" placeholder="First name">
+        </label>
+      </div>
+
+      <div class="col mt-5 d-flex justify-content-center">
+        <label for="inputProduct" class="p-3 col-6">
+          <input type="text" class="form-control" id="inputLastName" placeholder="Last name">
+        </label>
+      </div>
+
+    </div>
+
+      
+
+      
+
+      <div class="row mt-5">
+        <div class="col d-flex justify-content-end">
+          <a  class="btn btn-outline-danger btn-sm" href="<?=App::config('url')?>product/index">Cancel</a>
+        </div>
+        <div class="col">
+          <input type="submit" class="btn btn-outline-success btn-sm" value="<?=$action?>">
+        </div>
+      </div>
+        <?=$message?>
+    </fieldset>
+  </form>
+  
+</div>
