@@ -9,6 +9,7 @@ class Customer
         select * from customer where id=:parameter;
         
         ');
+
         $query->execute(['parameter' =>$key]);
         return  $query->fetchAll();
     }
@@ -34,8 +35,8 @@ class Customer
         $connection = DB::getInstance();
         $query = $connection->prepare('
         
-                insert into customer (email,userpassword,firstname,lastname)
-                values (:email, :userpassword, :firstname, :lastname);
+            insert into customer (email,userpassword,firstname,lastname)
+            values (:email, :userpassword, :firstname, :lastname);
         
         ');
         $query->execute($parameter);
@@ -45,13 +46,13 @@ class Customer
     {
         $connection = DB::getInstance();
         $query = $connection->prepare('
-            
-        update customer set 
-        email=:email,
-        userpassword=:userpassword,
-        firstname=:firstname,
-        lastname=:lastname,
-        where id=:id;
+
+            update customer set 
+                email=:email,
+                userpassword=:userpassword,
+                firstname=:firstname,
+                lastname=:lastname,
+                where id=:id;
         ');
         
         $query->execute($parameter);
