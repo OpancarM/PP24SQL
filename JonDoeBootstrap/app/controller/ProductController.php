@@ -64,4 +64,33 @@ class ProductController extends AuthorizationController
         Product::delete($id);
         header('location:' . App::config('url').'product/index');
     }
+
+    public function saveimg(){
+
+        $img = $_POST['image'];
+        $img=str_replace('data:image/png;base64,','',$img);
+        $img=str_replace(' ','+',$img);
+        $data=base64_decode($img);
+
+        file_put_contents(BP . 'public' . DIRECTORY_SEPARATOR
+        . 'img' . DIRECTORY_SEPARATOR . 
+        'products' . DIRECTORY_SEPARATOR 
+        . $_POST['id'] . '.png', $data);
+
+        echo "OK";
+    }
+
+
+    private function addImg($product)
+    {
+        foreach($product as $p){
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR
+            . 'products' . DIRECTORY_SEPARATOR . $p->id . '.png' )){
+                $p->image= App::config('url') . 'public/img/products/' . $p->id . '.png';
+            }else{
+                $p->image= App::config('url') . 'public/img/unkown.png';
+            }
+        }
+        return $product;
+    }
 }
