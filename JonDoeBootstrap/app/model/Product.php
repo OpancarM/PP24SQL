@@ -24,6 +24,8 @@ class Product
         from product a left join cart b
         on a.id = b.product 
         group by a.id,a.item_name,a.item_price,a.item_description;
+        order by 3 , 2
+        limit 12
         
         '); 
         $query->execute();
