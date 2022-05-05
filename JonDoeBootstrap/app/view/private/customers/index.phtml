@@ -2,35 +2,19 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
+                <th scope="col">Email</th>      
                 <th scope="col">First name</th>
                 <th scope="col">Last name</th>
-                <th scope="col"><?php include 'add.phtml';?></th>
             </tr>
         </thead>
+        
         <tbody>
-            <?php foreach($customers as $customer):?>
+           <?php foreach($customers as $customer): ?>
                 <tr>
-                    <th scope="row"><?= $customer->id ?></th>
-                    <td><?= $customer->email ?></td>
-                    <td><?= $customer->userpassword ?></td>
-                    <td><?= $customer->firstname ?></td>
-                    <td><?= $customer->lastname ?></td>
-                    <td>
-                        <a href="<?= App::config('url') ?>customer/details/=<? $customer->id?>">
-                            <i title="Change;" class="bi bi-recycle"></i>
-                        </a>
-                        <?php if ($customer->cart == 0): ?>
-                        <a onclick="return confirm('Are you sure you want to delete?');" style="margin-left: 20px;" href="<?= App::config('url') ?>customer/delete/<?=$customer->id?>">
-                            <i style="color: red" title="Delete" class="bi bi-trash"></i>
-                        </a>
-                        <?php else:?>
-                        <i style="margin-left: 20px;color: gray" title="Cannot delete!" class="bi bi-trash"></i>
-                        <?php endif;?>
-                    </td>
+                    <td><?=$customer->email?></td>
+                    <td><?=$customer->firstname?></td>
+                    <td><?=$customer->lastname?></td>                   
                 </tr>
-            <?php endforeach;?>
+            <?php endforeach;?>   
         </tbody>
     </table>
