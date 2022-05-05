@@ -28,7 +28,7 @@ class CustomerController extends AuthorizationController
        ]);
     }   
 
-    public function details($id=0)
+   /* public function details($id=0)
     {
         if($id===0){
             $this->view->render($this->viewDir . 'details',[
@@ -61,7 +61,7 @@ class CustomerController extends AuthorizationController
     {
         Customer::delete($id);
         header('location:' . App::config('url').'customer/index');
-    }
+    }*/
 }
 
 
