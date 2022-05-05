@@ -23,10 +23,35 @@ class ProductController extends AuthorizationController
 
     public function index()
     {
+        if(!isset($_GET['page'])){
+            $pagea=1;
+        }else{
+            $page=(int)$_GET['page'];
+        }
+        if($page==0){
+            $page=1;
+        }
+
+        if(!isset($_GET['cond'])){
+            $cond='';
+        }else{
+            $cond=$_GET['cond'];
+        }
+
+        $up = Product::quntitiProduct($cond);
+        $pages = ceil($up / App::config('rps'));
+        
+        if($page>$pages){
+            $page = $pages;
+        }
+
         $product = Product::read();
 
        $this->view->render($this->viewDir . 'index',[
            'products' => $product,
+           'cond'=>$cond,
+           'page'=>$page,
+           'pages'=>$pages,
        ]);
     }   
 
