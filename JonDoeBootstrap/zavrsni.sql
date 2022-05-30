@@ -25,7 +25,7 @@ create table product
     id                  int not null primary key auto_increment,
     item_name           varchar(50),
     item_price          decimal(18,2),
-    item_description    varchar(255)  
+    item_description    varchar(255),  
 );
 
 #customerTable
