@@ -2,167 +2,138 @@
 
 class Cart{
 
-	 // Checks if current user has a shopping order created already
-     public static function getShoppingorder($id)
+
+    public static function readOne($ey)
+    {
+        $connection = DB::getInstance();
+        $query = $connection->prepare('
+        
+            select * from cart where id=:parameter;
+        
+        '); 
+        $izraz->execute(['parameter'=>$key]);
+        $cart= $query->fetchAll();
+        return $cart;
+    }
+
+
+     public static function read()
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
-             select id, customer, dateadded 
-             from shoppingorder 
-             where isFinished = 0 and customer=:customerId 
+
+            select a.id, a.item_name, b.item_name as product, 
+            concat(d.firstname, \' \', d.lastname) as customer
+            from cart a inner join product b on 
+            a.product=b.id
+            left join customer c on a.customer =c.id 
+            group by a.id, a.item_name, b.item_name, 
+            concat(d.firstname, \' \', d.lastname);
+             
              
          ');
-         $query->execute([
-             'customer' => $id
-         ]);
- 
+         $query->execute();
          return $query->fetch();
      }
  
-     // if not, Controller will make a new one, otherwise will take its id
-     public static function create($id)
+     public static function create($parameter)
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
-             insert into shoppingorder (customer, isFinished) values
-             (:customer, now(), 0)
+
+            insert into cart (product) values
+            (:product, now(), null);
              
          ');
-         $query->execute([
-             'customer' => $id
-         ]);
+         $query->execute($parameter);
+         return $query->lastInsertId();
  
      }
  
-     // Adds product into cart
-     public static function addtocart($product, $cart, $quantity)
+     public static function addtocart($parameter)
      {
          $connection = DB::getInstance();
  
          $query = $connection->prepare('
-             select a.quantity
-             from cart as a
-             inner join shoppingorder as b on a.shoppingorder = b.id
-             where a.product = :product and b.id = :shoppingorderId
+
+            insert into cart (product)
+            values (:product);
              
          ');
-         $query->execute([
-             'product' => $product,
-             'shoppingorderId' => $shoppingorderId
-         ]);
+
+        return $izraz->execute($parameter);
  
-         // Cehcks if product already exists in cart and its quantity
          $existsInCart = $query->fetchColumn();
  
          if($existsInCart == 0){
              $query = $connection->prepare('
-             insert into cart (shoppingorder, product, price, quantity, dateadded) values
-             (:shoppingorderId, :product, (select price from product where id = :product), 1, now())
+
+             insert into cart (product, item_price, quantity) values
+             (:product, :item_price (select price from product where id = :product), 1, now())
              
              ');
              return $query->execute([
-                 'product' => $product,
-                 'shoppingorderId' => $shoppingorderId
+
+                'product' => $product,
+                'cartId' => $cartId
+
              ]);
+
          }else{
              $query = $connection->prepare('
+             
              update cart a
-             inner join shoppingorder as b on a.shoppingorder=b.id
              set a.quantity = a.quantity+1
-             where product= :product and b.id= :shoppingorderId
+             where product = :product;
              
              ');
+
              return $query->execute([
-                 'product' => $product,
-                 'shoppingorderId' => $shoppingorderId
+
+                'product' => $product,
+                'cartId' => $cartId
+                
              ]);
          }
-         // We need to return for our check in js
      }
  
-     // Remove product from cart
-     public static function removefromcart($product, $shoppingorderId)
+     public static function removefromcart()
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
-             delete from cart 
-             where product = :product and shoppingorder = :shoppingorderId
+
+            delete from cart 
+            where product = :product;
              
          ');
+
          return $query->execute([
-             'product' => $product,
-             'shoppingorderId' => $shoppingorderId
+
+            'product' => $product,
+            'cartId' => $cartId
+
          ]);
  
-         // We need to return for our check in js
+         
      }
- 
-     // Gets shopping cart with products
-     public static function getShoppingorderCart($id)
-     {
-         $connection = DB::getInstance();
-         $query = $connection->prepare('
-             select a.id as orderId,c.id as id, c.name, c.description, b.price, b.quantity, b.dateadded
-             from shoppingorder a
-             inner join cart b on a.id=b.shoppingorder
-             inner join product c on b.product=c.id
-             where a.isFinished = 0 and a.customer = :customerId
-             
-         ');
-         $query->execute([
-             'customerId' => $id
-         ]);
- 
-         return $query->fetchAll();
-     }
- 
-     // Number of products in cart for badge
-     public static function numberOfUniqueProducts($id)
-     {
-         $connection = DB::getInstance();
-         $query = $connection->prepare('
-             select count(*) as number
-             from shoppingorder a
-             inner join cart b on a.id=b.shoppingorder
-             where a.isFinished = 0 and a.customer = :customerId
-             
-         ');
-         $query->execute([
-             'customerId' => $id
-         ]);
- 
-         return $query->fetchColumn();
-     }
- 
-     // Sum total of the order
+   
      public static function sumTotal($id)
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
+
              select sum(b.price*b.quantity) as number
-             from shoppingorder a
-             inner join cart b on a.id=b.shoppingorder
-             where a.isFinished = 0 and a.customer = :customerId
+             from cart a
+             inner join cart b on a.id=b.cart
              
          ');
          $query->execute([
+
              'customerId' => $id
+
          ]);
  
          return $query->fetchColumn();
      }
  
-     public static function finishShoppingorder($customerId)
-     {
-         $connection = DB::getInstance();
-         $query = $connection->prepare('
-         update shoppingorder
-         set isFinished = 1, dateFinished = now()
-         where isFinished = 0 and customer = :customerId
-             
-         ');
-         $query->execute([
-             'customerId' => (int)$customerId
-         ]);
-     }
 }
