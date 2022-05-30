@@ -1,14 +1,5 @@
 <?php include 'error_report.phtml';?>
 <div class="row">
-  <div class="col">
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><a class="page-link text-muted" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link text-muted" href="#">1</a></li>
-        <li class="page-item"><a class="page-link text-muted" href="#">Next</a></li>
-      </ul>
-    </nav>
-  </div>
   <?php if(App::admin()):?>
   <?php include 'add.phtml';?>
   <?php endif;?>  
@@ -22,7 +13,7 @@
           <p class="card-text text-center"><?=$product->item_description?></p>
             <div class="row mt-5">
               <div class="col"><p><?=$product->item_price?> € </p></div>
-              <div class="col"><a href="#" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
+              <div class="col"><a href="<?=App::config('url')?>cart/index" data-close class="btn btn-outline-warning" style="float:right;">BUY</a></div>
             </div>  
             <?php if(App::admin()):?>
             <div class="row mt-5">
