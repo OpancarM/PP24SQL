@@ -6,15 +6,13 @@ class CustomerController extends AuthorizationController
                 'private' . DIRECTORY_SEPARATOR . 
                     'customers' . DIRECTORY_SEPARATOR;
     private $message;
-    private $product;
+    private $customer;
       
     public function __construct()
     {
         parent::__construct();
         $this->customer = new stdClass();
-        $this->customer->id=0;
         $this->customer->email='';
-        $this->customer->userpassword='';
         $this->customer->firstname='';
         $this->customer->lastname='';
     }
@@ -24,7 +22,7 @@ class CustomerController extends AuthorizationController
         $customer = Customer::read();
 
        $this->view->render($this->viewDir . 'index',[
-           'customers' => $customer,
+           'customers' => $customer
        ]);
     }   
 
