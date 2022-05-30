@@ -45,11 +45,13 @@
             <a class="nav-link" href="<?=App::config('url')?>login/index">Login</a>
           <?php endif;?>
         </li>
+        <?php if(App::authorized()):?>
         <li class="nav-item">
-          <a href="" class="btn btn-sm">
+          <a href="<?=App::config('url')?>cart/index" class="btn btn-sm">
             <i class="bi bi-basket3 h5"></i>
           </a>
         </li>
+        <?php endif;?>
       </ul>
     </div>
   </div>
