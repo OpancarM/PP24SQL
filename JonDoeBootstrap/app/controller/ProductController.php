@@ -23,35 +23,12 @@ class ProductController extends AuthorizationController
 
     public function index()
     {
-        if(!isset($_GET['page'])){
-            $pagea=1;
-        }else{
-            $page=(int)$_GET['page'];
-        }
-        if($page==0){
-            $page=1;
-        }
-
-        if(!isset($_GET['cond'])){
-            $cond='';
-        }else{
-            $cond=$_GET['cond'];
-        }
-
-        $up = Product::quntitiProduct($cond);
-        $pages = ceil($up / App::config('rps'));
-        
-        if($page>$pages){
-            $page = $pages;
-        }
 
         $product = Product::read();
 
        $this->view->render($this->viewDir . 'index',[
            'products' => $product,
-           'cond'=>$cond,
-           'page'=>$page,
-           'pages'=>$pages,
+
        ]);
     }   
 
@@ -90,32 +67,24 @@ class ProductController extends AuthorizationController
         header('location:' . App::config('url').'product/index');
     }
 
-    public function saveimg(){
-
-        $img = $_POST['image'];
-        $img=str_replace('data:image/png;base64,','',$img);
-        $img=str_replace(' ','+',$img);
-        $data=base64_decode($img);
+    private function savePicture($id){
+        $picture = $_POST['imageInput'];
+        $picture=str_replace('data:image/png;base64,','',$picture);
+        $picture=str_replace(' ','+',$picture);
+        $data=base64_decode($picture);
 
         file_put_contents(BP . 'public' . DIRECTORY_SEPARATOR
-        . 'img' . DIRECTORY_SEPARATOR . 
-        'products' . DIRECTORY_SEPARATOR 
-        . $_POST['id'] . '.png', $data);
+        . 'images' . DIRECTORY_SEPARATOR . 
+        'product' . DIRECTORY_SEPARATOR 
+        . $id . '.png', $data);
 
         echo "OK";
     }
 
-
-    private function addImg($product)
-    {
-        foreach($product as $p){
-            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR
-            . 'products' . DIRECTORY_SEPARATOR . $p->id . '.png' )){
-                $p->image= App::config('url') . 'public/img/products/' . $p->id . '.png';
-            }else{
-                $p->image= App::config('url') . 'public/img/unkown.png';
-            }
-        }
-        return $product;
+    private function getPicture(){
+            $this->product->imageInput = base64_encode(file_get_contents(BP . 'public' . DIRECTORY_SEPARATOR
+                                                                        . 'images' . DIRECTORY_SEPARATOR . 
+                                                                        'product' . DIRECTORY_SEPARATOR 
+                                                                        . $this->product->id . '.png'));
     }
 }
