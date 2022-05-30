@@ -1,0 +1,45 @@
+<div class="cart col">
+    <h1 class="text-center">Shopping Cart</h1>
+     <form action="index.php?page=cart" method="post">
+                <?php if (empty($products)): ?>                
+                    <p class="text-center">You have no products added in your Shopping Cart.</p>
+                    <p class="text-center">Your products can see in <a href="<?= App::config('url'); ?>product/">HERE!</a></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">Product</td>
+                    <td scope="col">Price</td>
+                    <td scope="col">Quantity</td>
+                    <td scope="col">Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php else: ?>
+                <?php foreach ($cart as $product): ?>
+                <tr>
+                    <td class="img">
+                        <a href="index.php?page=product&id=<?=$product->id?>">
+                            <img src="" width="50" height="50" alt="<?=$product->item_name?>">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="index.php?page=product&id=<?=$product->id?>"><?=$product->item_name?></a>
+                        <br>
+                        <a href="index.php?page=cart&remove=<?=$product->id?>" class="remove">Remove</a>
+                    </td>
+                    <td class="price">&dollar;<?=$product['price']?></td>
+                    <td class="quantity">
+                        <input type="number" name="quantity-<?=$product->id?>" value="" min="1"?>" 
+                    </td>
+                        <td class="price">&dollar;<?=$product->item_price?></td>
+                </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+        <div class="subtotal">
+            <span class="text">Subtotal</span>
+            <span class="price">&euro;</span>
+        </div>
+    </form>
+</div>
