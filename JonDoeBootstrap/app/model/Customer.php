@@ -26,6 +26,7 @@ class Customer
         group by a.id a.email, a.userpassword,a.firstname,a.lastname;
         
         ');
+
         $query->execute();
         return  $query->fetch();
     }
@@ -39,6 +40,7 @@ class Customer
             values (:email, :userpassword, :firstname, :lastname);
         
         ');
+        
         $query->execute($parameter);
     } 
     
