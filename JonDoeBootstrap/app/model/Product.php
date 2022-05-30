@@ -2,6 +2,19 @@
 
 class Product
 {
+    public static function amountProduct()
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+        
+            select count(a.id) from product;
+            
+        '); 
+
+        $query->execute();
+        return $query->fetchColumn();
+    }
+
     public static function readOne($key)
     {
         $connection = DB::getInstance();
@@ -23,11 +36,10 @@ class Product
         count(b.id) as cart
         from product a left join cart b
         on a.id = b.product 
-        group by a.id,a.item_name,a.item_price,a.item_description;
-        order by 3 , 2
-        limit 12
-        
+        group by a.id,a.item_name,a.item_price,a.item_description;  
+
         '); 
+
         $query->execute();
         return $query->fetchAll();
     }
