@@ -38,13 +38,17 @@ class ProductController extends AuthorizationController
             $this->view->render($this->viewDir . 'details',[
                 'product'=>$this->product,
                 'message'=>'Add data',
-                'action'=>'Add new'
+                'action'=>'Add new',
+                'javascript'=>'<script src="' . App::config('url') . 'public/js/cropper.js"></script>
+                                <script src="' . App::config('url') . 'public/js/saveimg.js"></script> '
             ]);
         }else{
             $this->view->render($this->viewDir . 'details',[
                 'product'=>Product::readOne($id),
                 'message'=>'Change data',
-                'action'=>'Change'
+                'action'=>'Change',
+                'javascript'=>'<script src="' . App::config('url') . 'public/js/cropper.js"></script>
+                                <script src="' . App::config('url') . 'public/js/saveimg.js"></script> '
             ]);
         }
 
