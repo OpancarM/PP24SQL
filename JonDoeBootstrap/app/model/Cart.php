@@ -3,12 +3,15 @@
 class Cart{
 
 
-    public static function readOne($ey)
+    public static function readOne($key)
     {
         $connection = DB::getInstance();
         $query = $connection->prepare('
         
-            select * from cart where id=:parameter;
+            select b.id, c.item_name, c.item_price
+            from product a
+            inner join customer b on a.customer =b.id
+            where a.cart = :parameter;
         
         '); 
         $izraz->execute(['parameter'=>$key]);
