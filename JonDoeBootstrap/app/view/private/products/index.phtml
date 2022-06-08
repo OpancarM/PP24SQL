@@ -13,7 +13,7 @@
           <p class="card-text text-center"><?=$product->item_description?></p>
             <div class="row mt-5">
               <div class="col"><p><?=$product->item_price?> € </p></div>
-              <div class="col"><a href="<?=App::config('url')?>cart/index" data-close class="btn btn-outline-warning" style="float:right;">BUY</a></div>
+              <div class="col"><a href="<?=App::config('url')?>cart/index"  data-id="<?= $product->id?>" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
             </div>  
             <?php if(App::admin()):?>
             <div class="row mt-5">
