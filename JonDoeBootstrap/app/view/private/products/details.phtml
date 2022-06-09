@@ -1,5 +1,5 @@
 <div class="col">
-  <form action="<?=App::config('url')?>product/action" method="post">
+  <form action="<?=App::config('url')?>product/action" method="post" enctype="multipart/form-data">
     <fieldset>
     <div class="form-row">
 
@@ -25,7 +25,7 @@
 
       <div class="form-group mt-5 col mt-5 d-flex justify-content-center">
         <label for="file" class="p-3 col-6">
-        <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+          <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
         </label>
       </div>
 
@@ -34,7 +34,7 @@
           <a  class="btn btn-outline-danger btn-sm" href="<?=App::config('url')?>product/index">Cancel</a>
         </div>
         <div class="col">
-          <input type="submit" class="btn btn-outline-success btn-sm" id="submitForm" value="<?= $action ?>">
+          <input type="submit" class="btn btn-outline-success btn-sm" id="submitForm" value="<?=$action?>">
         </div>
       </div>
         <?=$message?>
