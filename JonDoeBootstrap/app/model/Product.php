@@ -47,13 +47,19 @@ class Product
     public static function create($parameter)
     {
         $connection = DB::getInstance();
+        $connection->beginTransaction();
         $query = $connection->prepare('
         
             insert into product (item_name,item_price,item_description,)
             values (:item_name,:item_price,:item_description);
         
         '); 
+
         $query->execute($parameter);
+        
+        $idProduct = $connection->lastInsertId();
+        $connection->commit();   
+        return $idProduct; 
         
     }
     
@@ -70,6 +76,7 @@ class Product
                 where id=:id;
         
         '); 
+        
         $query->execute($parameter);
         
     }
