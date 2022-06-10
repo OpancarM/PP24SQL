@@ -5,15 +5,13 @@ class ProductController extends AuthorizationController
     private $viewDir = 
                 'private' . DIRECTORY_SEPARATOR . 
                     'products' . DIRECTORY_SEPARATOR;
-    private $nf;
+
     private $message;
     private $product;
       
     public function __construct()
     {
         parent::__construct();
-        /*$this->nf = new \NumberFormatter("hr-HR", \NumberFormatter::DECIMAL);
-        $this->nf->setPattern('#,##0.00 kn');*/
         $this->product = new stdClass();
         $this->product->id=0;
         $this->product->item_name='';
@@ -25,10 +23,17 @@ class ProductController extends AuthorizationController
     {
 
         $product = Product::read();
+        foreach($product as $p){
+            if(file_exists(BP . 'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR
+            . 'products' . DIRECTORY_SEPARATOR . $p->id . '.png' )){
+                $p->picture= App::config('url') . 'public/img/products/' . $p->id . '.png';
+            }else{
+                $p->picture= App::config('url') . 'public/img/products/unkown.png';
+            }
+        }
 
        $this->view->render($this->viewDir . 'index',[
-           'products' => $product,
-
+           'products' => $product
        ]);
     }   
 
@@ -57,11 +62,22 @@ class ProductController extends AuthorizationController
     public function action()
     {
         if($_POST['id']==0){
-            Product::create($_POST);
+           $id = Product::create($_POST);
+            
         }else{
             Product::update($_POST);
+            $id=$_POST['id'];
         }
         header('location:' . App::config('url').'product/index');
+
+        if(isset($_FILES['picture'])){
+            move_uploaded_file($_FILES['picture']['tmp_name'], 
+            BP . 'public' . DIRECTORY_SEPARATOR . 'img' . DIRECTORY_SEPARATOR
+             . 'products' . DIRECTORY_SEPARATOR . $id . '.jpg'
+        );
+        }
+
+        header('location:' . App::config('url').'predavac/index');
 
     }
 
@@ -69,26 +85,5 @@ class ProductController extends AuthorizationController
     {
         Product::delete($id);
         header('location:' . App::config('url').'product/index');
-    }
-
-    private function savePicture($id){
-        $picture = $_POST['imageInput'];
-        $picture=str_replace('data:image/png;base64,','',$picture);
-        $picture=str_replace(' ','+',$picture);
-        $data=base64_decode($picture);
-
-        file_put_contents(BP . 'public' . DIRECTORY_SEPARATOR
-        . 'images' . DIRECTORY_SEPARATOR . 
-        'product' . DIRECTORY_SEPARATOR 
-        . $id . '.png', $data);
-
-        echo "OK";
-    }
-
-    private function getPicture(){
-            $this->product->imageInput = base64_encode(file_get_contents(BP . 'public' . DIRECTORY_SEPARATOR
-                                                                        . 'images' . DIRECTORY_SEPARATOR . 
-                                                                        'product' . DIRECTORY_SEPARATOR 
-                                                                        . $this->product->id . '.png'));
     }
 }
