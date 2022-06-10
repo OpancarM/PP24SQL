@@ -1,6 +1,9 @@
-$(".photo").click(function () {
+var idProduct;
+
+$(".picture").click(function () {
+    idProduct=$(this).attr("id").split("_")[1];
     $("#image").attr("src", $(this).attr("src"));
-    $("#photoModal").foundation("open");
+    $("#pictureModal").foundation("open");
     defineCropper();
   
     return false;
@@ -13,8 +16,8 @@ $(".photo").click(function () {
   
     $.ajax({
         type: "POST",
-        url:  "",
-        data: "id=" + idProduct + "&photo=" + result.toDataURL(),
+        url:  "/products/savepicture",
+        data: "id=" + idProduct + "&picture=" + result.toDataURL(),
         success: function(backServer){
           if(backServer==="OK"){
             $("#p_"+idProduct).attr("src",result.toDataURL());
@@ -57,18 +60,17 @@ $(".photo").click(function () {
           file = files[0];
   
           if (/^image\/\w+$/.test(file.type)) {
+
             if (uploadedImageURL) {
               URL.revokeObjectURL(uploadedImageURL);
+
             }
   
             uploadedImageURL = URL.createObjectURL(file);
-            $image
-              .cropper("destroy")
-              .attr("src", uploadedImageURL)
-              .cropper(options);
-            $inputImage.val("");
+            $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+            $inputImage.val('');
           } else {
-            window.alert("Datoteka nije u formatu slike");
+            window.alert("Wrong format");
           }
         }
       });
