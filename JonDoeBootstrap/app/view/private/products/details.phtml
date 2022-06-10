@@ -4,28 +4,30 @@
     <div class="form-row">
 
       <div class="col mt-5 d-flex justify-content-center">
-        <label for="inputProduct" class="p-3 col-6">
-          <input type="text" class="form-control" id="inputEmail" placeholder="Product">
+        <label for="product" class="p-3 col-6">
+          <input type="text" class="form-control" id="product" placeholder="Product" value="<?=$product->item_name?>">
         </label>
       </div>
 
       <div class="form-group col mt-5 d-flex justify-content-center">
-        <label for="inputPrice" class="p-3 col-6">
-          <input type="text" class="form-control" id="inputPrice" placeholder="Price">
+        <label for="price" class="p-3 col-6">
+          <input type="text" class="form-control" id="price" placeholder="Price" value="<?=$product->item_price?>">
         </label>
       </div>
 
     </div>
 
       <div class="form-group mt-5 col mt-5 d-flex justify-content-center">
-        <label for="exampleFormControlTextarea1" class="p-3 col-6">
-          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+        <label for="description" class="p-3 col-6">
+          <textarea class="form-control" id="description1" rows="3" placeholder="Description" value="<?=$product->item_description?>"></textarea>
         </label>
       </div>
 
       <div class="form-group mt-5 col mt-5 d-flex justify-content-center">
-        <label for="file" class="p-3 col-6">
-          <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+        <label for="picture" class="p-3 col-6">
+          <input type="file" id="picture" name="picture">
+
+          <input type="hidden" name="id" value="<?=$product->id?>">
         </label>
       </div>
 
@@ -34,7 +36,7 @@
           <a  class="btn btn-outline-danger btn-sm" href="<?=App::config('url')?>product/index">Cancel</a>
         </div>
         <div class="col">
-          <input type="submit" class="btn btn-outline-success btn-sm" id="submitForm" value="<?=$action?>">
+          <input type="submit" class="btn btn-outline-success btn-sm" value="<?=$action?>">
         </div>
       </div>
         <?=$message?>
