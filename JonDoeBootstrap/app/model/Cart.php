@@ -1,6 +1,19 @@
 <?php
 
-class Cart{
+class Cart
+{
+    public static function amountProduct()
+    {
+        $connection = DB::getInstanca();
+        $query = $connection->prepare('
+        
+            select count(a.id) from product;
+            
+        '); 
+
+        $query->execute();
+        return $query->fetch();
+    }
 
 
     public static function readOne($key)
