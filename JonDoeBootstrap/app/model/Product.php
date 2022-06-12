@@ -2,19 +2,7 @@
 
 class Product
 {
-    public static function amountProduct()
-    {
-        $connection = DB::getInstanca();
-        $query = $connection->prepare('
-        
-            select count(a.id) from product;
-            
-        '); 
-
-        $query->execute();
-        return $query->fetchColumn();
-    }
-
+    
     public static function readOne($key)
     {
         $connection = DB::getInstance();
@@ -51,7 +39,7 @@ class Product
         $query = $connection->prepare('
         
             insert into product (item_name,item_price,item_description,)
-            values (:item_name,:item_price,:item_description);
+            values (:item_name,:item_price,:item_description, now());
         
         '); 
 
