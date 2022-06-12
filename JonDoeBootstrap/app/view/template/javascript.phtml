@@ -1,3 +1,6 @@
-<script src="<?=App::config('url')?>public/js/jquery.js"></script>
-<script src="<?=App::config('url')?>public/js/bootstrap.js"></script>
+<script src="<?=App::config('url')?>public/js/vendor/jquery.js"></script>
+<script src="<?=App::config('url')?>public/js/vendor/bootstrap.js"></script>
 <script src="<?=App::config('url')?>public/js/javascript.js"></script>
+<script src="<?=App::config('url')?>public/js/vendor/cropper.js"></script>
+<script src="<?=App::config('url')?>public/js/saveimg.js"></script> 
+<?php if(isset($javascript)) echo $javascript; ?>
