@@ -23,31 +23,31 @@ class App
             $method=$parts[2];
         }
 
-        $parameter1=null;
+        $param1=null;
         if(!isset($parts[3]) || $parts[3]===''){
-            $parameter1=null;
+            $param1=null;
         }else{
-            $parameter1=$parts[3];
+            $param1=$parts[3];
         }
 
-        $parameter2=null;
+        $param2=null;
         if(!isset($parts[4]) || $parts[4]===''){
-            $parameter2=null;
+            $param2=null;
         }else{
-            $parameter2=$parts[4];
+            $param2=$parts[4];
         }
 
         
 
         if(class_exists($class) && method_exists($class,$method)){
             $instance = new $class();
-            if($parameter1==null){
+            if($param1==null){
                 $instance->$method();
             }else{
                 if($parameter2==null){    
-                $instance->$method($parameter1);
+                $instance->$method($param1);
                 }else{
-                    $instance->$method($parameter1,$parameter2);
+                    $instance->$method($param1,$param2);
                 }
             }    
         }else{
