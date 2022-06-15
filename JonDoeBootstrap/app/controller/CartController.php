@@ -15,21 +15,23 @@ class CartController extends AuthorizationController
         ]);
     } 
 
-    public function addtocart($productId , $quantity=1, $pizza=false)
-    {
-        $customerId = $_SESSION['authorized']->id;
+    public  function addtocart($customerId, $productId){
+        if (isset($customerId) && isset($productId)){
+            $param = array(
+                "customer_id" => $customerId,
+                "product_id" => $productId
+            );
 
-        if (Cart::getCart($customerId) === null) {
-            Cart::create($customerId);
+            
+            $result = $this->insertintocart($param);
+            if ($result){
+                
+                header('location:' . App::config('url').'cart/index');
+            }
         }
-        $cartId = Cart::getCart($customerId)->id;
-
-
-
-        echo Cart::addtocart($productId, $cartId) ? 'OK' : 'Error';
     }
 
-    public function removefromcart($productId)
+    public function removefromcart($productid)
     {
         $customerId = $_SESSION['authorized']->id;
         $cartId = Cart::getCart($customerId)->id;
