@@ -8,10 +8,10 @@ class Product
         $connection = DB::getInstance();
         $query = $connection->prepare('
         
-            select * from product where id=:parameter;
+            select * from product where id=:param;
         
         '); 
-        $query->execute(['parameter'=>$key]);
+        $query->execute(['param'=>$key]);
         return $query->fetchAll();
     }
 
@@ -32,7 +32,7 @@ class Product
         return $query->fetchAll();
     }
 
-    public static function create($parameter)
+    public static function create($param)
     {
         $connection = DB::getInstance();
         $connection->beginTransaction();
@@ -43,7 +43,7 @@ class Product
         
         '); 
 
-        $query->execute($parameter);
+        $query->execute($param);
         
         $idProduct = $connection->lastInsertId();
         $connection->commit();   
@@ -52,7 +52,7 @@ class Product
     }
     
 
-    public static function update($parameter)
+    public static function update($param)
     {
         $connection = DB::getInstance();
         $query = $connection->prepare('
@@ -65,7 +65,7 @@ class Product
         
         '); 
         
-        $query->execute($parameter);
+        $query->execute($param);
         
     }
  
