@@ -27,7 +27,7 @@ class Cart
             where a.cart = :parameter;
         
         '); 
-        $izraz->execute(['parameter'=>$key]);
+        $izraz->execute(['param'=>$key]);
         $cart= $query->fetchAll();
         return $cart;
     }
@@ -52,7 +52,7 @@ class Cart
          return $query->fetch();
      }
  
-     public static function create($parameter)
+     public static function create($param)
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
@@ -66,7 +66,7 @@ class Cart
  
      }
  
-     public static function addtocart($parameter)
+     public static function addtocart($param)
      {
          $connection = DB::getInstance();
  
@@ -77,7 +77,7 @@ class Cart
              
          ');
 
-        return $izraz->execute($parameter);
+        return $izraz->execute($param);
  
          $existsInCart = $query->fetchColumn();
  
