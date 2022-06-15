@@ -43,7 +43,7 @@ class ProductController extends AuthorizationController
             $this->view->render($this->viewDir . 'details',[
                 'product'=>$this->product,
                 'message'=>'Add data',
-                'action'=>'Add new'
+                'action'=>'Add new' 
             ]);
         }else{
             $this->view->render($this->viewDir . 'details',[
@@ -73,7 +73,7 @@ class ProductController extends AuthorizationController
         );
         }
 
-        header('location:' . App::config('url').'predavac/index');
+        header('location:' . App::config('url').'product/index');
 
     }
 
@@ -82,4 +82,5 @@ class ProductController extends AuthorizationController
         Product::delete($id);
         header('location:' . App::config('url').'product/index');
     }
+
 }
