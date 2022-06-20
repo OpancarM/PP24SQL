@@ -24,7 +24,7 @@ class Cart
             select b.id, c.item_name, c.item_price
             from product a
             inner join customer b on a.customer =b.id
-            where a.cart = :parameter;
+            where a.cart = :param;
         
         '); 
         $izraz->execute(['param'=>$key]);
@@ -38,13 +38,10 @@ class Cart
          $connection = DB::getInstance();
          $query = $connection->prepare('
 
-            select a.id, a.item_name, b.item_name as product, 
-            concat(d.firstname, \' \', d.lastname) as customer
-            from cart a inner join product b on 
-            a.product=b.id
-            left join customer c on a.customer =c.id 
-            group by a.id, a.item_name, b.item_name, 
-            concat(d.firstname, \' \', d.lastname);
+            select b.id, c.item_name, c.item_price
+            from product a
+            inner join customer b on a.customer =b.id
+            where a.cart = :param;
              
              
          ');
