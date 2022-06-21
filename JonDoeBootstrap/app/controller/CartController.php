@@ -10,32 +10,36 @@ class CartController extends AuthorizationController
 
      public function index()
     {
-        $this->view->render($this->viewDir . 'index',[
-        'cart' => Cart::read()
+        $cart=Cart::getInCart($_SESSION['authorized']->id);
+
+        $this->view->render($this->viewDir . 'index', [
+            'cart' =>$cart,
         ]);
     } 
 
-    public  function addtocart($customerId, $productId){
-        if (isset($customerId) && isset($productId)){
-            $param = array(
-                "customer_id" => $customerId,
-                "product_id" => $productId
-            );
-
-            
-            $result = $this->insertintocart($param);
-            if ($result){
-                
-                header('location:' . App::config('url').'cart/index');
+    public  function addToCart($productId, $quantity=1){
+        {
+            $customerId = $_SESSION['authorized']->id;
+            if (Cart::getInCart($customerId) == null) {
+                Cart::create($customerId);
             }
+            $cartId = Cart::getCart($customerId)->id;
+            
+            $this->view->render($this->viewDir . 'index', [
+                'cart' =>$cart,
+            ]);
+    
+    
+            echo Cart::addToCart($productId, $cartId, $quantity);
         }
+        
     }
 
-    public function removefromcart($productid)
+    public function removeFromCart($productId)
     {
         $customerId = $_SESSION['authorized']->id;
         $cartId = Cart::getCart($customerId)->id;
 
-        echo Cart::removefromcart($productId, $cartId) ? 'OK' : 'Error';
+        echo Cart::removeFromCart($productId, $cartId);
     }
 }
