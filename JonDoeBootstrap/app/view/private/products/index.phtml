@@ -1,4 +1,4 @@
-<?php include 'error_report.phtml';?>
+
 <div class="row">
   <?php if(App::admin()):?>
   <?php include 'add.phtml';?>
@@ -6,11 +6,13 @@
 </div>
 <hr>
 <?php foreach($products as $product): ?>
-    <div class="card m-5" style="width: 20rem; min-height:30rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+    <div class="m-5" style="width: 20rem; min-height:30rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
       <img class="card-img-top" src="<?=$product->picture?>" alt="<?=$product->item_name?>">
-        <div class="card-body">
-          <h5 class="card-title text-center"><?=$product->item_name?></h5>
+        <div>
+          <div style="height:300px;">
+          <h5 class="card-title text-center mt-2"><?=$product->item_name?></h5>
           <p class="card-text text-center"><?=$product->item_description?></p>
+          </div>
             <div class="row mt-5">
               <div class="col"><p><?=$product->item_price?> € </p></div>
               <div class="col"><a href="<?=App::config('url')?>cart/index"  data-id="<?= $product->id?>" class="btn btn-outline-warning" style="float:right;">BUY</a></div>
