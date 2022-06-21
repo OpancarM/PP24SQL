@@ -49,7 +49,7 @@ class Cart
          return $query->fetch();
      }
  
-     public static function create($param)
+     public static function create($id)
      {
          $connection = DB::getInstance();
          $query = $connection->prepare('
@@ -135,9 +135,6 @@ class Cart
          $connection = DB::getInstance();
          $query = $connection->prepare('
 
-             select sum(b.price*b.quantity) as number
-             from cart a
-             inner join cart b on a.id=b.cart
              
          ');
          $query->execute([
@@ -149,21 +146,6 @@ class Cart
          return $query->fetchColumn();
      }
 
-     public static function brojPolaznikaNaGrupi()
-    {
-        $veza = DB::getInstanca();
-        $izraz = $veza->prepare('
-        
-        select a.naziv as name, count(b.polaznik) as y
-        from grupa a left join clan b 
-        on a.sifra=b.grupa
-        group by a.naziv
-        order by 2 desc;
-        
-        
-        '); 
-        $izraz->execute();
-        return $izraz->fetchAll();
-    }
+    
  
 }
