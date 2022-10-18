@@ -23,8 +23,8 @@ class CartController extends AuthorizationController
             'cart' => Cart::read()
         ]);
     }
-
-    public function addtocart($product)
+    //Problem sa prebacivanjem proizvoda u košaricu
+    public function addtocart()
     {
        if($_SERVER["REQUEST_METHOD"]=="POST")
        {
