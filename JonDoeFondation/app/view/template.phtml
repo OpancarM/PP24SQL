@@ -1,0 +1,24 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+<head>
+  <?php include_once 'template/head.phtml' ?>
+</head>
+<body style="font-family:font-monospace;">
+<?php include_once 'template/menu.phtml' ?>
+<div class="main grid-container">
+  <div class="grid-x grid-padding-x">
+    <div class="large-12 cell">
+      <div id="content">
+        <!-- Content from controllers is displayed here -->
+        <?= $content ?>
+      </div>
+      <?php include_once 'template/footer.phtml' ?>
+    </div>
+  </div> 
+</div>
+  <?php include_once 'template/javascript.phtml' ?>
+</body>
+</html>
+
+
+

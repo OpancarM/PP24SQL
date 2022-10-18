@@ -1,0 +1,105 @@
+
+    <h2>Details</h2>
+    <table class="hover">
+        <thead>
+            <th>Product</th>
+            <th class="text-center">Price</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Sum</th>
+            <th></th>
+        </thead>
+        <tbody>
+            <?php foreach ($orders as $product) : ?>
+                <tr id="product<?= $product->id ?>">
+                    <td class="order-cart-item text-left" data-open="productmodal<?= $product->id ?>" title="Klik za detalje."><?= $product->item_name ?></td>
+                    <td><?= $product->priceFormatted ?> €</td>
+                    <td><?= $product->quantity ?></td>
+                    <td><?= number_format($product->item_price * $product->quantity, 2, ',', '.') ?> €</td>
+                    <td>
+                        <button class="removeFromCart" data-id="<?= $product->id ?>"><i title="Obriši &quot;<?= $product->item_name ?>&quot;." class="fas fa-2x fa-trash"></i></button>
+                    </td>
+                </tr>
+                <div class="small reveal" id="productmodal<?= $product->id ?>" data-reveal>
+                    <h1 class="modal-product-name"><?= $product->item_name ?></h1>
+                    <div class="grid-x grid-padding-x modal-product-section">
+                        <div class="large-6 modal-product-image">
+                            <img src="<?= App::config('url') ?>public/images/product/<?= $product->id ?>.png" alt="<?= $product->item_name ?>">
+                        </div>
+                        <div class="large-6 modal-product-description">
+                            <p><?= $product->description ?></p>
+                        </div>
+                    </div>
+                    <div class="grid-x grid-padding-x text-center">
+                        <div class="large-6 large-offset-1">
+                            <h3><?= $product->priceFormatted ?> €</h3>
+                        </div>
+                        <div class="large-3">
+
+                            <i class="fas fa-3x fa-cart-plus add-to-cart addToCart" data-id="<?= $product->id ?>" data-open="modal<?= $product->id ?>" title="Add &quot;<?= $product->name ?>&quot; u košaricu"></i>
+                            <div class="small reveal add-modal" id="modal<?= $product->id ?>" data-reveal>
+                                <div class="grid-x grid-padding-x text-center">
+                                    <h4 class="text-center">"<?= $product->item_name ?>" Succesfully added in cart!</h4>
+                                    <br>
+                                    <br>
+                                    <div class="large-6">
+                                        <button data-close class="button warning">Close</button>
+                                    </div>
+                                    <div class="large-6">
+                                        <a href="<?= App::config('url') ?>orders/index" data-close class="button expanded">Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <h3 id="sumTotal">Sum: <?= number_format(Orders::sumTotal($_SESSION['authorized']->id), 2, ',', '.') ?> €</h3>
+    <hr>
+    <form action="<?= App::config('url') ?>orders/action" method="POST">
+        <div>
+            <div class="registration-part">
+                <h3 class="text-center">Podaci za dostavu:</h3>
+
+                <label for="firstname">First name</label>
+                <input type="text" name="firstname" id="firstname" aria-describedby="messageFirstname" value="<?= $customer->firstname ?>">
+                <p class="help-text red-message" id="messageFirstname">
+                    <?= $message->firstname ?>
+                </p>
+
+                <label for="lastname">Last name</label>
+                <input type="text" name="lastname" id="lastname" aria-describedby="messageLastname" value="<?= $customer->lastname ?>">
+                <p class="help-text red-message" id="messageLastname">
+                    <?= $message->lastname ?>
+                </p>
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" aria-describedby="messageEmail" placeholder="vas.email@gmail.com" value="<?= $customer->email ?>">
+                <p class="help-text red-message" id="messageEmail">
+                    <?= $message->email ?>
+                </p>
+
+                <label for="street">Street and street number</label>
+                <input type="text" name="street" id="street" aria-describedby="messageStreet" placeholder="Ulica Republike, 3a" value="<?= $customer->street ?>">
+                <p class="help-text red-message" id="messageStreet">
+                    <?= $message->street ?>
+                </p>
+
+                <label for="city">City</label>
+                <input type="text" name="city" id="city" aria-describedby="messageCity" placeholder="Osijek" value="<?= $customer->city ?>">
+                <p class="help-text red-message" id="messageCity">
+                    <?= $message->city ?>
+                </p>
+
+                </table>
+                <input type="hidden" name="id" value="<?= $customer->id ?>">
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="registration-button" value="Potvrdi kupovinu!">Potvrdi kupovinu!</button>
+        </div>
+    </form>

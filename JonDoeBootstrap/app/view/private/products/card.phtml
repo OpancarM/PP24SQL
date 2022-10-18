@@ -1,0 +1,17 @@
+<div class="card m-5" style="width: 20rem; min-height:30rem; box-shadow: 0 5px 20px rgba(0,0,0,0.5);">
+<img src="<?= App::config('url')?>public/images/product/<?= $product->id?>.png" data-open="product<?= $product->id ?>" title="<?=$product->item_name?>">
+    <div>
+        <div style="height:300px;">
+            <h5 class="card-title text-center mt-5"><?=$product->item_name?></h5>
+            <p class="card-text text-center"><?=$product->item_description?></p>
+        </div>
+        <div class="row ">
+            <div class="col">
+                <p><?=$product->price?> € </p>
+            </div>
+            <div class="col">
+                <i class="bi bi-plus-circle add-to-cart addToCart" data-id="<?= $product->id ?>" style="float:right;" title="Add &quot;<?= $product->name ?>&quot; in cart">Buy</i> 
+            </div>
+        </div>  
+    </div>
+</div>

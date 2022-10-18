@@ -1,0 +1,81 @@
+<div class="grid-x">
+  <div class="cell large-auto">
+    <form action="<?=App::config('url')?>login/authorization" method="POST">
+      <h2 class="text-center">Log in</h2>  
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="admin@edunova.hr" value="<?=$email?>">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" name="userpassword" placeholder="a">
+      <input type="submit" class="hollow button success" value="Login"></input>
+      <?=$message?>
+    </form>
+    <div>
+      <a class="hollow button secondary" href="<?=App::config('url')?>registration/index">Registration</a>
+    </div>
+  </div>
+  <div class="cell large-auto text-center">
+      <h2 class>Admin</h2>
+      <ul style="list-style-type: none;">
+        <h4>Email</h4>
+        <li>admin@edunova.hr</li>
+        <h4>Password</h4>
+        <li>a</li>
+      </ul>
+      <h2>User</h2>
+      <ul style="list-style-type: none;">
+        <h4>Email</h4>
+        <li>user1@edunova.hr</li>
+        <li>user2@edunova.hr</li>
+        <h4>Password</h4>
+        <li>b</li>
+        <li>c</li>
+      </ul>
+  </div>
+</div>
+
+    
+ 
+
+
+<div class="grid-x" style="border-top: 0.5px solid gray;">
+  <hr class="mt-5">
+  <div class="cell large-auto" style="margin-top:20px;">
+    <figure>
+        <blockquote >
+            <p>
+                 "A tailor can adapt to any medium, be it poetry, be it criticism. As a poet, he can mend, and with the scissors of criticism he candivide."
+            </p>
+        </blockquote>
+        <figcaption >
+            Franz Grillparzer
+        </figcaption>
+    </figure>  
+  </div>
+  <div class="cell large-auto" style="margin-top:20px;">
+    <figure>
+        <blockquote>
+            <p>
+                "Just because a suit fits, doesn't mean it looks good. You need a tailor. You want to get bespoke."
+            </p>
+        </blockquote>
+        <figcaption>
+            Ryan Tedder
+        </figcaption>
+    </figure> 
+  </div>
+  <div class="cell large-auto" style="margin-top:20px;">
+    <figure>
+        <blockquote>
+            <p>
+                "If you are out to describe the truth, leave elegance to the tailor."
+            </p>
+        </blockquote>
+        <figcaption>
+            Albert Einstein
+        </figcaption>
+    </figure>  
+  </div>
+
+</div>
+

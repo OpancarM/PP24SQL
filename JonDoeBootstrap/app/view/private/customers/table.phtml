@@ -1,0 +1,24 @@
+<table class="table">
+        <thead>
+            <tr>
+                <td scope="col">#</td>
+                <td scope="col">First name</td>
+                <td scope="col">Last name</td>
+                <td scope="col">City</td>
+                <td scope="col">Email</td>
+                <td scope="col">Phone</td>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($customers as $customer): ?>
+        <tr>
+            <td><?= $customer->id ?></td>
+            <td><?= $customer->firtsname ?></td>
+            <td><?= $customer->lastname ?> </td>
+            <td><?= $customer->city ?></td>
+            <td><?= $customer->email ?></td>
+            <td><?= $customer->phonenumber ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>

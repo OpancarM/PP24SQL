@@ -1,0 +1,34 @@
+<div class="cart col">
+    <h1 class="text-center">Shopping Cart</h1>
+        <?php if (empty($products)): ?>                
+        <p class="text-center">You have no products added in your Shopping Cart.</p>
+        <p class="text-center">Your products can see in <a href="<?= App::config('url'); ?>product/">HERE!</a></p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td scope="col">Product</td>
+                    <td scope="col">Price</td>
+                    <td scope="col">Quantity</td>
+                    <td scope="col">Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <?php else: ?>
+                <?php foreach ($orders as $product): ?>
+                <tr id="product<?= $product->id ?>">
+                    <td><?= $product->item_name ?></td>
+                    <td><?= $product->priceFormatted ?> €</td>
+                    <td><?= $product->quantity ?></td>
+                    <td><?= number_format($product->item_price * $product->quantity, 2,',','.') ?> €</td> 
+                    <td>
+                        <button class="removeFromCart" data-id="<?= $product->id ?>"><i title="Delete &quot;<?= $product->name ?>&quot;." class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php endif; ?>
+        <h1 id="sumTotal">Sum: <?= number_format(Shoppingorder::sumTotal($_SESSION['authorized']->id), 2,',','.') ?> €</h1>
+        <br>
+        <button class="button secondary"><a style="color: white;" href="<?=App::config('url')?>orders/delivered"> Finish!</a></button>
+</div>

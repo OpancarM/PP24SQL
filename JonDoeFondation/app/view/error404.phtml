@@ -1,0 +1,12 @@
+<?php if(App::config('dev')):?>
+
+<h1>404 error <?=$donotexist?></h1>
+<ul>
+    <li>
+        Page not found!
+    </li>
+    <li>
+        Go back to <a href="<?=App::config('url')?>">home</a>! 
+    </li>
+</ul>   
+<?php endif;?>  

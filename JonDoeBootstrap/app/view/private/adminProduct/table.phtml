@@ -1,0 +1,23 @@
+<table class="table">
+        <thead>
+            <tr>
+                <td scope="col">Product</td>
+                <td scope="col">Price</td>
+                <td scope="col">Quantity</td>
+                <td scope="col">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($products as $product): ?>
+        <tr id="product<?= $product->id ?>">
+            <td><?= $product->item_name ?></td>
+            <td><?= $product->priceFormatted ?> €</td>
+            <td><?= $product->quantity ?></td>
+            <td><?= number_format($product->item_price * $product->quantity, 2,',','.') ?> €</td> 
+            <td>
+                <button class="removeFromCart" data-id="<?= $product->id ?>"><i title="Delete &quot;<?= $product->name ?>&quot;." class="bi bi-trash"></i></button>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+    </tbody>
+</table>
