@@ -1,12 +1,11 @@
 <?php if(App::config('dev')):?>
-
-<h1>404 error <?=$donotexist?></h1>
+<h1>Tražili ste <?=$onoceganema?></h1>
 <ul>
     <li>
-        Page not found!
+        Error
     </li>
-    <li>
-        Go back to <a href="<?=App::config('url')?>">home</a>! 
-    </li>
-</ul>   
+</ul>
+<?php else:?>
+    <h1>Ono što ste tražili ne postoji</h1>
+    <a href="<?=App::config('url')?>">Početna stranica</a>
 <?php endif;?>  

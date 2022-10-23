@@ -1,6 +1,6 @@
 <?php
 
-abstract class AdminController extends AutorizacijaController
+abstract class AutorizacijaController extends Controller
 {
 
     
@@ -8,7 +8,7 @@ abstract class AdminController extends AutorizacijaController
     public function __construct()
     {
         parent::__construct();
-        if($_SESSION['autoriziran']->uloga!=='admin'){
+        if(!isset($_SESSION['autoriziran'])){
             $this->view->render('login',[
                 'email'=>'',
                 'poruka'=>'Prvo se prijavite'

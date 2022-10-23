@@ -2,21 +2,22 @@
 
 class DB extends PDO
 {
-    private static $instance=null;
+    private static $instanca=null;
 
-    private function __construct($data)
+    private function __construct($baza)
     {
-        $dsn='mysql:host=' . $data['server'] . ';dbname=' . $data['data'] . ';charset=utf8mb4';
-        parent::__construct($dsn,$data['user'],$data['password']);
-        
+        $dsn='mysql:host=' . $baza['server'] . ';dbname=' . $baza['baza'] . ';charset=utf8mb4';
+        parent::__construct($dsn,$baza['korisnik'],$baza['lozinka']);
+     
         $this->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_OBJ);
     }
 
-    public static function getInstance()
+    public static function getInstanca()
     {
-        if(self::$instance==null){
-            self::$instance=new self(App::config('data'));        
+        if(self::$instanca==null){
+            self::$instanca=new self(App::config('baza'));        
         }
-        return self::$instance;
+        return self::$instanca;
     }
+
 }

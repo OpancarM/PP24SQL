@@ -1,0 +1,56 @@
+<form action="<?=App::config('url')?>radionica/dodajNovi" method="post">
+
+<div class="grid-x grid-padding-x">
+    <div class="cell large-6">
+   
+        <fieldset>
+            <legend>Promjena postojeće radionice</legend>
+
+
+            <label>
+                Naziv
+                <input type="text" name="naziv" value="<?=$e->naziv?>" />
+            </label>
+
+            <label>
+                Smjer
+                <select name="tecaj">
+                    <?php foreach($tecajevi as $tecaj): ?>
+                        <option 
+                        <?php if($tecaj->sifra==$e->tecaj){
+                            echo 'selected="selected"';
+                        } ?>
+                        value="<?=$tecaj->sifra?>"><?=$tecaj->naziv?></option>
+                    <?php endforeach;?>
+                </select>
+            </label>
+
+            <div class="warning callout">
+         
+                    <input type="text" id="uvjetTrenera" placeholder="Traži trenera">
+
+                Odabrani Trener: <p id="odabraniTrenera"><?=$labelaTrenera; ?></p>
+            </div>
+            
+
+            <label>
+                Datum početka
+                <input type="date" name="datumpocetka" value="<?php 
+                if($e->datumpocetka==null){
+                    echo '';
+                }else{
+                    echo date('Y-m-d',strtotime($e->datumpocetka));
+                }
+                ?>" lang="hr-HR">
+                    </label>
+        
+
+            <input type="hidden" name="sifra" value="<?=$e->sifra?>">
+            <input type="hidden" id="trener" name="trener" value="<?=$e->trener?>">
+
+            
+            <?=$poruka?>
+
+        </fieldset>
+      
+    </div>

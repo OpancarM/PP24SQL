@@ -2,19 +2,19 @@
 
 class View
 {
-    private $template;
+    private $predlozak;
 
-    public function __construct($template='template')
+    public function __construct($predlozak='predlozak')
     {
-        $this->template=$template;
+        $this->predlozak=$predlozak;
     }
 
-    public function render($phtmlPage,$param=[])
+    public function render($phtmlStranica,$parametri=[])
     {
         ob_start();
-        extract($param);
-        include_once BP_APP . 'view' . DIRECTORY_SEPARATOR . $phtmlPage. '.phtml';
-        $content = ob_get_clean();
-        include_once BP_APP . 'view' .  DIRECTORY_SEPARATOR . $this->template . '.phtml';
+        extract($parametri); // od asocijativnog niza kreira varijable
+        include_once BP_APP . 'view' . DIRECTORY_SEPARATOR . $phtmlStranica . '.phtml';
+        $sadrzaj = ob_get_clean();
+        include_once BP_APP . 'view' .  DIRECTORY_SEPARATOR . $this->predlozak . '.phtml';
     }
 }

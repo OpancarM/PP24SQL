@@ -1,0 +1,67 @@
+<div class="grid-x">
+    <div class="cell large-6">
+        <h1 style="font-size: 1.5rem;">Tečajevi</h1>
+    </div>
+    <div class="cell large-6" style="text-align: right;">
+        <a href="<?=App::config('url')?>tecaj/novi">
+            <i style="color: green;" title="Dodaj novi" 
+                class="fas fa-2x fa-plus-circle"></i>
+        </a>
+    </div>
+</div>
+<div id="hackSearch">
+</div>
+<table class="table-sort table-sort-search">
+    <thead>
+        <tr>
+            <th class="table-sort">Naziv</th>
+            <th class="table-sort">Trajanje</th>
+            <th class="table-sort">Cijena</th>
+            <th>Certificiran</th>
+            <th>Opcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($tecajevi as $tecaj): ?>
+            <tr>
+                <td><?=$tecaj->naziv?></td>
+                <td><?=$tecaj->trajanje?></td>
+                <td><?=$tecaj->cijena?></td>
+                <td><?php if($tecaj->certificiran):?>
+                <i style="color: green"  
+                            class="fas fa-2x fa-certificate"></i>
+                    <?php else:?>
+                        <i style="color: gray"  
+                            class="fas fa-2x fa-certificate"></i>
+                    <?php endif;?>
+                </td>
+                <td>
+                <a href="<?=App::config('url')?>tecaj/promjena/<?=$tecaj->sifra?>">
+                    <i title="Promjeni &quot;<?=$tecaj->naziv?>&quot;" 
+                        class="fas fa-2x fa-edit"></i>
+                </a>   
+                <?php if($tecaj->radionica==0): ?>
+                    <a onclick="return confirm('Sigurno obrisati <?=$tecaj->naziv?>?');" style="margin-left: 20px;" href="<?=App::config('url')?>tecaj/brisanje/<?=$tecaj->sifra?>">
+                        <i style="color: red; font-size:30px;" title="Obriši <?=$tecaj->naziv?>" 
+                            class="bi bi-trash-fill"</i>
+                    </a>  
+                <?php else:?>
+                    <i style="margin-left: 20px;color: gray; font-size:30px;" 
+                    title="Ne može se obrisati <?=$tecaj->naziv?>" 
+                        class="bi bi-trash-fill"></i>
+                <?php endif;?>
+                 
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+
+<!-- Korištenje liste  
+<ol>  
+    <?php foreach($tecajevi as $tecaj): ?>
+        <li><?=$tecaj->naziv?></li>
+    <?php endforeach; ?>
+</ol>
+-->

@@ -4,52 +4,50 @@ class LoginController extends Controller
 {
     public function index()
     {
-        $this->loginView('Add email and password','');
+        $this->loginView('Popunite email i lozinku','');
     }
 
-    public function authorization()
+    public function autoriziraj()
     {
-        if(!isset($_POST['email']) || !isset($_POST['userpassword'])){
+        if(!isset($_POST['email']) || !isset($_POST['lozinka'])){
             $this->index();
-            return;
+            return; //short curcuiting
         }
 
         if(strlen(trim($_POST['email']))===0){
-           $this->loginView('Email required','');
+           $this->loginView('Email obavezno','');
            return;
         }
 
-        if(strlen(trim($_POST['userpassword']))===0){
-            $this->loginView('Password required',$_POST['email']);
+        if(strlen(trim($_POST['lozinka']))===0){
+            $this->loginView('Lozinka obavezno',$_POST['email']);
             return;
          }
-        
-         $operator = Operator::authorization($_POST['email'],$_POST['userpassword']);
-         if($operator==null){
-             $this->loginView('Wrong email and password',$_POST['email']);
+
+         // 100% sam siguran da je korisnik unio email i lozinku
+         $operater = Operater::autoriziraj($_POST['email'],$_POST['lozinka']);
+         if($operater==null){
+             $this->loginView('Neispravna kombinacija email i lozinka',$_POST['email']);
              return;
          }
 
-         $_SESSION['authorized']=$operator;
-         $np = new DashboardController();
+         $_SESSION['autoriziran']=$operater;
+         $np = new NadzornaplocaController();
          $np->index();
-
     }
 
-    public function logout()
+    public function odjava()
     {
-        unset($_SESSION['authorized']);
+        unset($_SESSION['autoriziran']);
         session_destroy();
-        $this->loginView('Succesful logout','');
+        $this->loginView('Uspješno ste odjavljeni','');
     }
 
-    private function loginView($message,$email)
+    private function loginView($poruka,$email)
     {
         $this->view->render('login',[
-            'message'=>$message,
+            'poruka'=>$poruka,
             'email'=>$email
         ]);
     }
 }
-
-

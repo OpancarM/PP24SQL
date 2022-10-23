@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /**
  * Foundation for Sites
- * Version 6.7.5
+ * Version 6.7.4
  * https://get.foundation
  * Licensed under MIT Open Source
  */
@@ -2430,7 +2430,8 @@ code, .code-inline {
   * {
     background: transparent !important;
     color: black !important;
-    print-color-adjust: economy;
+    -webkit-print-color-adjust: economy;
+            color-adjust: economy;
     -webkit-box-shadow: none !important;
             box-shadow: none !important;
     text-shadow: none !important; }

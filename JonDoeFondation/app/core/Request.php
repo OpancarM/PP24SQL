@@ -3,16 +3,18 @@
 class Request
 {
 
-    public static function getRoute()
+    public static function getRuta()
     {
-        $route='/';
+        $ruta='/';
 
         if(isset($_SERVER['REDIRECT_PATH_INFO'])){
-            $route=$_SERVER['REDIRECT_PATH_INFO'];
+            $ruta=$_SERVER['REDIRECT_PATH_INFO'];
         } else if(isset($_SERVER['REQUEST_URI'])){
-            $route = $_SERVER['REQUEST_URI'];
+            $ruta = $_SERVER['REQUEST_URI'];
         }
 
-        return $route;
+        return $ruta;
     }
+
+
 }

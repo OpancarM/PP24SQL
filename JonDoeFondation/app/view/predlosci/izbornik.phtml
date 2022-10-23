@@ -1,0 +1,38 @@
+<div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle></button>
+  <div class="title-bar-title"><?=App::config('naslovApp')?></div>
+</div>
+
+<div class="top-bar" id="example-menu" style="background-color:transparent;">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu style="background-color:transparent;">
+      <li class="menu-text"><?=App::config('naslovApp')?></li>
+      <li><a style="color:black;"  href="<?=App::config('url')?>">Početna</a></li>
+      <?php if(App::autoriziran()):?>
+        <li><a style="color:black;"  href="<?=App::config('url')?>nadzornaploca/index">Nadzorna ploča</a></li>
+      <?php endif;?>
+      <li class="has-submenu">
+      <?php if(App::autoriziran()):?>
+        <li><a style="color:black;"  href="#">Admin</a>
+          <ul class="submenu menu vertical" data-submenu >
+            <li><a style="color:black;"  href="<?=App::config('url')?>tecaj/index">Plesni tečajevi</a></li>
+            <li><a style="color:black;"  href="<?=App::config('url')?>plesac/index">Plesaci</a></li>
+            <li><a style="color:black;"  href="<?=App::config('url')?>trener/index">Trener</a></li>
+            <li><a style="color:black;"  href="<?=App::config('url')?>radionica/index">Plesne radionice</a></li>
+          </ul>
+        </li>
+      <?php endif;?>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="menu" style="background-color:transparent;">
+      <li>
+        <?php if(App::autoriziran()):?>
+          <a style="color:black;" href="<?=App::config('url')?>login/odjava">Odjavi <?php echo $_SESSION['autoriziran']->ime ?></a>
+        <?php else:?>
+          <a style="color:black;" href="<?=App::config('url')?>login/index">Login</a>
+        <?php endif;?>
+      </li>
+    </ul>
+  </div>
+</div>

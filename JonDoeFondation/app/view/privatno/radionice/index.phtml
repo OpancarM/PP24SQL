@@ -1,0 +1,51 @@
+<div class="grid-x">
+    <div class="cell large-6">
+        <h1 style="font-size: 1.5rem;">Radionice</h1>
+    </div>
+    <div class="cell large-6" style="text-align: right;">
+        <a href="<?=App::config('url')?>radionica/novi">
+            <i style="color: green;" title="Dodaj novi" 
+                class="fas fa-2x fa-plus-circle"></i>
+        </a>
+    </div>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>Naziv</th>
+            <th>Tečaj</th>
+            <th>Trener</th>
+            <th>Datum početka</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($entiteti as $e): ?>
+            <tr>
+                <td><?=$e->naziv?></td>
+                <td><?=$e->tecaj?></td>
+                <td><?=$e->trener?></td>
+                <td><?=$e->datumpocetka?></td>
+                <td>
+                <a href="<?=App::config('url')?>radionica/promjena/<?=$e->sifra?>">
+                    <i title="Promjeni &quot;<?=$e->naziv?>&quot;" 
+                        class="fas fa-2x fa-edit"></i>
+                </a>   
+                <?php if($e->plesac==0): ?>
+                    <a onclick="return confirm('Sigurno obrisati <?=$e->naziv?>?');" 
+                    style="margin-left: 20px;" 
+                    href="<?=App::config('url')?>radionica/brisanje/<?=$e->sifra?>">
+                        <i style="color: red; font-size:30px;" title="Obriši <?=$e->naziv?>" 
+                            class="bi bi-trash-fill"></i>
+                    </a>  
+                <?php else:?>
+                    <i style="margin-left: 20px;color: gray; font-size:30px;" 
+                    title="Ne može se obrisati <?=$e->naziv?>" 
+                        class="bi bi-trash-fill""></i>
+                <?php endif;?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+

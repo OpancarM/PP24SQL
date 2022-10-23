@@ -1,0 +1,68 @@
+<form action="<?=App::config('url')?>plesac/index" method="get">
+    <input type="text" name="uvjet" 
+    placeholder="Unesite dio imena, prezimena ili OIB-a"
+    value="<?=$uvjet?>" />
+</form>
+
+<nav aria-label="Pagination">
+  <ul class="pagination">
+    <li class="pagination-previous"><a href="<?=App::config('url')?>plesac/index?uvjet=<?=$uvjet?>&stranica=<?php echo $stranica-1;?>" aria-label="Next page">Prethodna <span class="show-for-sr">stranica</span></a></li>
+    <li class="current"><span class="show-for-sr">Vi ste na stranici</span> 
+        <?=$stranica?>/<?=$ukupnoStranica?>
+    </li>
+    <li class="pagination-next"><a href="<?=App::config('url')?>plesac/index?uvjet=<?=$uvjet?>&stranica=<?php echo $stranica+1;?>" aria-label="Next page">Sljedeće <span class="show-for-sr">page</span></a></li>
+  </ul>
+</nav>
+
+<div class="grid-x ">
+<div class="cell large-6">
+        <h1 style="font-size: 1.5rem;">Plesači</h1>
+    </div>
+    <div class="cell large-6" style="text-align: right;">
+        <a href="<?=App::config('url')?>plesac/detalji">
+            <i style="color: green;" title="Dodaj novi" 
+                class="fas fa-2x fa-plus-circle"></i>
+        </a>
+    </div>
+
+<table class="table-sort table-sort-search">
+    <thead>
+        <tr>
+            <th class="table-sort">Ime</th>
+            <th class="table-sort">Prezime</th>
+            <th class="table-sort">Email</th>
+            <th class="table-sort">Ples</th>
+            <th>Opcija</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($plesaci as $plesac): ?>
+            <tr>
+                <td><?=$plesac->ime?></td>
+                <td><?=$plesac->prezime?></td>
+                <td><?=$plesac->email?></td>
+                <td><?=$plesac->ples?></td>
+                
+                
+                <td>
+                <a href="<?=App::config('url')?>plesac/detalji/<?=$plesac->sifra?>">
+                    <i title="Promjeni" 
+                        class="fas fa-2x fa-edit"></i>
+                </a>   
+                <?php if($plesac->radionica==0): ?>
+                    <a onclick="return confirm('Sigurno obrisati?');" style="margin-left: 20px;" href="<?=App::config('url')?>plesac/brisanje/<?=$plesac->sifra?>">
+                        <i style="color: red; font-size:30px;" title="Obriši " 
+                            class="bi bi-trash-fill"></i>
+                    </a>  
+                <?php else:?>
+                    <i style="margin-left: 20px;color: gray; font-size:30px;" 
+                    title="Ne može se obrisati" 
+                            class="bi bi-trash-fill"></i>
+                <?php endif;?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>   
+    
+</div>

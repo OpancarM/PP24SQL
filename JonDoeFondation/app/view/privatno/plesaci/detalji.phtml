@@ -1,0 +1,35 @@
+<form action="<?=App::config('url')?>plesac/akcija" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Detalji plesača</legend>
+
+        <label for="Ime">Ime</label>
+        <input type="text" name=ime" id="ime" value="<?=$plesac->ime?>">
+    
+        <label for="prezime">Prezime</label>
+        <input type="text" name="prezime" id="prezime" 
+         value="<?=$plesac->prezime?>">
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" value="<?=$plesac->email?>">
+
+        <label for="oib">OIB</label>
+        <input type="text" name="oib" id="oib" value="<?=$plesac->oib?>">
+
+        <label for="ples">Ples</label>
+        <input type="text" name="ples" id="ples" value="<?=$plesac->ples?>">
+
+        <input type="hidden" name="sifra" value="<?=$plesac->sifra?>">
+
+        <div class="grid-x grid-padding-x">
+            <div class="large-4 cell">
+                <a  class="alert button expanded" 
+                href="<?=App::config('url')?>plesac/index">Odustani</a>
+            </div>
+            <div class="large-8 cell">
+                <input type="submit" class="success button expanded" value="<?=$akcija?>">
+            </div>
+        </div>
+        <?=$poruka?>
+
+    </fieldset>
+</form>

@@ -4,67 +4,73 @@ class App
 {
     public static function start()
     {
-        $route = Request::getRoute();
+        
+        $ruta = Request::getRuta();
 
-        $parts = explode('/',$route);
+        $djelovi = explode('/',$ruta);
 
-        $class='';
-        if(!isset($parts[1]) || $parts[1]===''){
-            $class='Index';
+        $klasa='';
+        if(!isset($djelovi[1]) || $djelovi[1]===''){
+            $klasa='Index';
         }else{
-            $class=ucfirst($parts[1]);
+            $klasa=ucfirst($djelovi[1]);
         }
-        $class .= 'Controller';
+        $klasa .= 'Controller';
 
-        $method='';
-        if(!isset($parts[2]) || $parts[2]===''){
-            $method='index';
+        $metoda='';
+        if(!isset($djelovi[2]) || $djelovi[2]===''){
+            $metoda='index';
         }else{
-            $method=$parts[2];
-        }
-
-        $param1=null;
-        if(!isset($parts[3]) || $parts[3]===''){
-            $param1=null;
-        }else{
-            $param1=$parts[3];
+            $metoda=$djelovi[2];
         }
 
-        $param2=null;
-        if(!isset($parts[4]) || $parts[4]===''){
-            $param2=null;
+        $parametar1=null;
+        if(!isset($djelovi[3]) || $djelovi[3]===''){
+            $parametar1=null;
         }else{
-            $param2=$parts[4];
+            $parametar1=$djelovi[3];
         }
 
-        if(class_exists($class) && method_exists($class,$method)){
-            $instance = new $class();
-            if($param1==null){
-                $instance->$method();
+        $parametar2=null;
+        if(!isset($djelovi[4]) || $djelovi[4]===''){
+            $parametar2=null;
+        }else{
+            $parametar2=$djelovi[4];
+        }
+
+
+        if(class_exists($klasa) && method_exists($klasa,$metoda)){
+            $instanca = new $klasa();
+            if($parametar1==null){
+                $instanca->$metoda();
             }else{
-                if($param2==null){    
-                $instance->$method($param1);
+                if($parametar2==null){
+                    $instanca->$metoda($parametar1);
                 }else{
-                    $instance->$method($param1,$param2);
+                    $instanca->$metoda($parametar1,$parametar2);
                 }
-            }    
+                
+            }
+            
         }else{
+       
             $view = new View();
             $view->render('error404',[
-                'donotexist' =>$class . '->' . $method
+                'onoceganema' =>$klasa . '->' . $metoda
             ]);
+
         }
-    }
-    
-    public static function config($key)
-    {
-        $config = include BP_APP . 'configuration.php';
-        return $config[$key];
+
     }
 
-    public static function authorized()
+    public static function config($kljuc)
     {
-        if(isset($_SESSION) && isset($_SESSION['authorized'])){
+        $config = include BP_APP . 'konfiguracija.php';
+        return $config[$kljuc];
+    }
+    public static function autoriziran()
+    {
+        if(isset($_SESSION) && isset($_SESSION['autoriziran'])){
             return true;
         }
 
@@ -73,12 +79,10 @@ class App
 
     public static function admin()
     {
-        if(App::authorized() && $_SESSION['authorized']->operatorrole==='admin'){
+        if(App::autoriziran() && $_SESSION['autoriziran']->uloga==='admin'){
             return true;
         }
 
         return false;
     }
-
-    
 }
